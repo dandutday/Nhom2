@@ -12,7 +12,7 @@
 html,
 body {
 	height: 100%;
-	font-family: 'Raleway', sans-serif;
+	/* font-family: 'Raleway', sans-serif; */
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
@@ -283,6 +283,20 @@ ol {
 	margin-left: 45px;
 	font-weight: 600;
 	padding: 20px 0 5px;
+}
+
+.main-menu ul li a.dropdown-item {
+	display: block;
+	margin-left: 0px;
+	width: 100%;
+	padding: .25rem 1.5rem;
+	clear: both;
+	font-weight: 400;
+	color: #212529;
+	text-align: inherit;
+	white-space: nowrap;
+	background-color: transparent;
+	border: 0;
 }
 
 .main-menu ul li a:hover {
@@ -1444,7 +1458,18 @@ ol {
 	color: #d82a4e;
 	margin-right: 15px;
 }
-
+.price a {
+color: white;
+}
+.ci-text span a {
+	color: #d82a4e;
+}
+.ci-text span a:hover {
+	color: white;
+}
+.categorie-item:hover a {
+	color: white;
+}
 /*------------------
   Responsive
 ---------------------*/
