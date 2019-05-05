@@ -68,8 +68,54 @@
 					<p>Tên: <%= session.name%></p>
 				</div>
 				<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque,
-						at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
+					<div class="table-responsive-md">
+						<table class="table table-striped">
+							<thead>
+							  <tr>
+								<th scope="col">#</th>
+								<th scope="col">Thứ 2</th>
+								<th scope="col">Thứ 3</th>
+								<th scope="col">Thứ 4</th>
+								<th scope="col">Thứ 5</th>
+								<th scope="col">Thứ 6</th>
+								<th scope="col">Thứ 7</th>
+								<th scope="col">Chủ Nhật</th>
+							  </tr>
+							</thead>
+							<tbody>
+							  <tr>
+								<th scope="row">Sáng</th>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td>@mdo</td>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td>@mdo</td>
+								<td>@mdo</td>
+							  </tr>
+							  <tr>
+								<th scope="row">Chiều</th>
+								<td>Jacob</td>
+								<td>Thornton</td>
+								<td>@fat</td>
+								<td>@mdo</td>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td>@mdo</td>
+							  </tr>
+							  <tr>
+								<th scope="row">Tối</th>
+								<td>Larry</td>
+								<td>the Bird</td>
+								<td>@twitter</td>
+								<td>@mdo</td>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td>@mdo</td>
+							  </tr>
+							</tbody>
+						  </table>
+					  </div>
 				</div>
 				<div class="tab-pane fade " id="tab-3" role="tabpanel" aria-labelledby="tab-3">
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque,
@@ -87,13 +133,8 @@
 	<!-- footer section end -->
 
 
-	<!--====== Javascripts & Jquery ======-->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/mixitup.min.js"></script>
-	<script src="js/circle-progress.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/main.js"></script>
+		<!--====== Javascripts & Jquery ======-->
+		<% include _javascripts.ejs%>
 
 
 	<!-- load for map -->
