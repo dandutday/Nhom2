@@ -7,6 +7,7 @@ var logger = require('morgan');
 var cookieSession = require('cookie-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var adminRouter = require('./routes/admin');
 
 var app = express();
 
@@ -22,24 +23,30 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('trust proxy', 1);
 app.use(cookieSession({
-                    name: 'session'
-                    , secret: "damducduy"
-                    , httpOnly: true
-                    , maxAge: 30 * 60 * 1000
-                    , secure: false
-                    , overwrite: false
-              }));
+  name: 'session'
+  , secret: "damducduy"
+  , httpOnly: true
+  , maxAge: 30 * 60 * 1000
+  , secure: false
+  , overwrite: false
+}));
 
+app.use(function (req, res, next) {
+  res.locals.session = req.session;
+  next();
+});
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/quanly', express.static('public/admin/'));
+app.use('/quanly', adminRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

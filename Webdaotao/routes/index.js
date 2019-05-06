@@ -13,10 +13,10 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 // }));
 
-router.use(function(req, res, next) {
-  res.locals.session = req.session;
-  next();
-});
+// router.use(function(req, res, next) {
+//   res.locals.session = req.session;
+//   next();
+// });
 
 
 router.get('/trangchu', function (req, res, next) {

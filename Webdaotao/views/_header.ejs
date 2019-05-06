@@ -18,42 +18,72 @@
 						<li><a href="/tintuc">Tin tức</a></li>
 						<li><a href="/lienhe">Liên hệ</a></li>
 						<% if(session.name==null) {%>
-						<li><a href="/lienhe" data-toggle="modal" data-target="#myModal">Đăng nhập</a></li>
-						<div class="modal fade" id="myModal" role="dialog">
+						<li><a href="/lienhe" data-toggle="modal" data-target="#modaldangnhap">Đăng nhập</a></li>
+						<div class="modal fade" id="modaldangnhap" role="dialog">
 							<div class="modal-dialog">
-							
+
 								<!-- Modal content-->
 								<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Đăng nhập</h4>
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Đăng nhập</h4>
+									</div>
+									<div class="modal-body">
+										<form action="/dangnhap" class="signup-form" method="post">
+											<input name="username" type="text" placeholder="Tên đăng nhập">
+											<input name="password" type="password" placeholder="Mật khẩu">
+											<input type="submit" class="btn btn-success" value="Đăng nhập" />
+											<input type="reset" class="btn btn-danger" value="Xoá" />
+										</form>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+									</div>
 								</div>
-								<div class="modal-body">
-								<form action="/dangnhap" class="signup-form" method="post">
-									<input name="username" type="text" placeholder="Tên đăng nhập">
-									<input name="password" type="password" placeholder="Mật khẩu">
-									<input type="submit" class="site-btn" value="Đăng nhập" />
-								</form>
+
+							</div>
+						</div>
+						<li><a href="/lienhe" data-toggle="modal" data-target="#modaldangky">Đăng Ký</a></li>
+						<div class="modal fade" id="modaldangky" role="dialog">
+							<div class="modal-dialog">
+
+								<!-- Modal content-->
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Đăng Ký</h4>
+									</div>
+									<div class="modal-body">
+										<form action="/dangky" class="signup-form" method="post">
+											<input name="username" type="text" placeholder="Tên đăng nhập">
+											<input name="email" type="email" placeholder="E-Mail">
+											<input name="email" type="text" placeholder="Tên">
+											<input name="email" type="text" placeholder="Họ">
+											<input name="password" type="password" placeholder="Mật khẩu">
+											<input type="submit" class="btn btn-success" value="Đăng Ký" />
+											<input type="reset" class="btn btn-danger" value="Xoá" />
+										</form>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+									</div>
 								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-								</div>
-								</div>
-								
+
 							</div>
 						</div>
 						<%}else{ %>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									
-									<%=session.name %>
-								</a>
-								<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-									<a class="dropdown-item" href="/thongtin">Thông tin</a>
-									<a class="dropdown-item" href="/dangxuat">Đăng xuất</a>
-									<a class="dropdown-item" href="#">...</a>
-								</div>
-							</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+								<%=session.name %>
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" href="/thongtin">Thông tin</a>
+								<a class="dropdown-item" href="/dangxuat">Đăng xuất</a>
+								<a class="dropdown-item" href="/quanly">Quản Lý</a>
+							</div>
+						</li>
 						<%}%>
 					</ul>
 				</nav>
