@@ -2,15 +2,13 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
-
-// var con = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   database: "webtrungtamdaotao"
-// });
-// var connect=require('../controllers/connect');
-// var cn=new connect();
-
+var connect = require('../controllers/connect');
+var cn = new connect();
+var users = [];
+cn.querys.query("SELECT * FROM taikhoan", function (err, rows, fields) {
+  if (err) throw err;
+  users = rows;
+});
 // cn.GetALL();
 // var users;
 // cn.querys.query("SELECT * FROM taikhoan", function (err, rows, fields) {
