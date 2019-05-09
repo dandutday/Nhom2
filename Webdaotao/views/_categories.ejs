@@ -7,71 +7,18 @@
 			</div>
 			<div class="row">
 				<!-- categorie -->
+				<% monhoc.forEach(function(item){%>
 				<div class="col-lg-4 col-md-6">
 					<div class="categorie-item">
 						<div class="ci-thumb set-bg" data-setbg="img/categories/1.jpg"></div>
 						<div class="ci-text">
-							<h5>Phát triển phần mềm</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur</p>
-							<span><a href="/khoahoc">120 Khoá học</a></span>
+							<h5><%=item.MH_TEN %></h5>
+							<p><%=item.MH_NOIDUNG%></p>
+							<span><a href="/khoahoc"><%=item.MH_THOILUONG%> Khoá học</a></span>
 						</div>
 					</div>
 				</div>
-				<!-- categorie -->
-				<div class="col-lg-4 col-md-6">
-					<div class="categorie-item">
-						<div class="ci-thumb set-bg" data-setbg="img/categories/2.jpg"></div>
-						<div class="ci-text">
-							<h5>Thiết kế web</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur</p>
-							<span><a href="/khoahoc">70 Khoá học</a></span>
-						</div>
-					</div>
-				</div>
-				<!-- categorie -->
-				<div class="col-lg-4 col-md-6">
-					<div class="categorie-item">
-						<div class="ci-thumb set-bg" data-setbg="img/categories/3.jpg"></div>
-						<div class="ci-text">
-							<h5>Thiết kế & Vẽ</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur</p>
-							<span><a href="/khoahoc">55 Khoá học</a></span>
-						</div>
-					</div>
-				</div>
-				<!-- categorie -->
-				<div class="col-lg-4 col-md-6">
-					<div class="categorie-item">
-						<div class="ci-thumb set-bg" data-setbg="img/categories/4.jpg"></div>
-						<div class="ci-text">
-							<h5>Social Media</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur</p>
-							<span><a href="/khoahoc">40 Khoá học</a></span>
-						</div>
-					</div>
-				</div>
-				<!-- categorie -->
-				<div class="col-lg-4 col-md-6">
-					<div class="categorie-item">
-						<div class="ci-thumb set-bg" data-setbg="img/categories/5.jpg"></div>
-						<div class="ci-text">
-							<h5>Photoshop</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur</p>
-							<span><a href="/khoahoc">220 Khoá học</a></span>
-						</div>
-					</div>
-				</div>
-				<!-- categorie -->
-				<div class="col-lg-4 col-md-6">
-					<div class="categorie-item">
-						<div class="ci-thumb set-bg" data-setbg="img/categories/6.jpg"></div>
-						<div class="ci-text">
-							<h5>Tiền điện tử</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur</p>
-							<span><a href="/khoahoc">25 Khoá học</a></span>
-						</div>
-					</div>
-				</div>
+				<%})%>
 			</div>
 		</div>
 	</section>

@@ -8,7 +8,7 @@ var cookieSession = require('cookie-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
-
+var mysql = require('mysql');
 var app = express();
 
 // view engine setup
@@ -30,7 +30,6 @@ app.use(cookieSession({
   , secure: false
   , overwrite: false
 }));
-
 app.use(function (req, res, next) {
   res.locals.session = req.session;
   next();

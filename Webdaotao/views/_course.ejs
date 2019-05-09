@@ -1,173 +1,42 @@
-	<!-- course section -->
-	<section class="course-section spad">
-		<div class="container">
-			<div class="section-title mb-0">
-				<h2>Các khoá học đặc trưng</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
-			</div>
+<!-- course section -->
+<section class="course-section spad">
+	<div class="container">
+		<div class="section-title mb-0">
+			<h2>Các khoá học đặc trưng</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris
+				scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
 		</div>
-		<div class="course-warp">
-			<ul class="course-filter controls">
-				<li class="control active" data-filter="all">All</li>
-				<li class="control" data-filter=".mang">Kế toán</li>
-				<li class="control" data-filter=".design">Thiết kế</li>
-				<li class="control" data-filter=".web">Phát triển web</li>
-				<li class="control" data-filter=".photo">Đồ hoạ</li>
-			</ul>                                       
-			<div class="row course-items-area">
-				<!-- course -->
-				<div class="mix col-lg-3 col-md-4 col-sm-6 mang">
-					<div class="course-item">
-						<div class="course-thumb set-bg" data-setbg="img/courses/1.jpg">
-							<div class="price"><a href="/khoahoc-2">Giá: 1.000.000 vnd</a></div>
-						</div>
-						<div class="course-info">
-							<div class="course-text">
-								<h5>Vẽ</h5>
-								<p>Lorem ipsum dolor sit amet, consectetur</p>
-								<div class="students">120 học sinh</div>
-							</div>
-							<div class="course-author">
-								<div class="ca-pic set-bg" data-setbg="img/authors/1.jpg"></div>
-								<p><span>Giáo viên</span>:William Parker,</p>
-							</div>
-						</div>
+	</div>
+	<div class="course-warp">
+		<ul class="course-filter controls">
+			<li class="control active" data-filter="all">All</li>
+			<% monhoc.forEach(function(item){%>
+			<li class="control" data-filter=".MH<%=item.MH_ID%>"><%=item.MH_TEN %></li>
+			<%})%>
+		</ul>
+		<div class="row course-items-area">
+			<!-- course -->
+			<% khoahoc.forEach(function(item){%>
+			<div class="mix col-lg-3 col-md-4 col-sm-6 MH<%=item.MH_ID%>">
+				<div class="course-item">
+					<div class="course-thumb set-bg" data-setbg="img/courses/1.jpg">
+						<div class="price"><a href="/khoahoc-<%=item.KH_ID %>">Giá: <%=item.KH_HOCPHI %></a></div>
 					</div>
-				</div>
-				<!-- course -->
-				<div class="mix col-lg-3 col-md-4 col-sm-6 design">
-					<div class="course-item">
-						<div class="course-thumb set-bg" data-setbg="img/courses/2.jpg">
-							<div class="price"><a href="/khoahoc-2">Giá: 1.000.000 vnd</a></div>
+					<div class="course-info">
+						<div class="course-text">
+							<h5><%=item.MH_TEN %></h5>
+							<p>Lorem ipsum dolor sit amet, consectetur</p>
+							<div class="students"><%=item.LP_SISO %> Học sinh</div>
 						</div>
-						<div class="course-info">
-							<div class="course-text">
-								<h5>Công nghệ thông tin</h5>
-								<p>Lorem ipsum dolor sit amet, consectetur</p>
-								<div class="students">120 học sinh</div>
-							</div>
-							<div class="course-author">
-								<div class="ca-pic set-bg" data-setbg="img/authors/2.jpg"></div>
-								<p><span>Giáo viên</span>:William Parker,</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- course -->
-				<div class="mix col-lg-3 col-md-4 col-sm-6 web">
-					<div class="course-item">
-						<div class="course-thumb set-bg" data-setbg="img/courses/3.jpg">
-							<div class="price"><a href="/khoahoc-2">Giá: 1.000.000 vnd</a></div>
-						</div>
-						<div class="course-info">
-							<div class="course-text">
-								<h5>Thiết kế đồ hoạ</h5>
-								<p>Lorem ipsum dolor sit amet, consectetur</p>
-								<div class="students">120 học sinh</div>
-							</div>
-							<div class="course-author">
-								<div class="ca-pic set-bg" data-setbg="img/authors/3.jpg"></div>
-								<p><span>Giáo viên</span>:William Parker,</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- course -->
-				<div class="mix col-lg-3 col-md-4 col-sm-6 photo">
-					<div class="course-item">
-						<div class="course-thumb set-bg" data-setbg="img/courses/4.jpg">
-							<div class="price"><a href="/khoahoc-2">Giá: 1.000.000 vnd</a></div>
-						</div>
-						<div class="course-info">
-							<div class="course-text">
-								<h5>IT Development</h5>
-								<p>Lorem ipsum dolor sit amet, consectetur</p>
-								<div class="students">120 học sinh</div>
-							</div>
-							<div class="course-author">
-								<div class="ca-pic set-bg" data-setbg="img/authors/4.jpg"></div>
-								<p><span>Giáo viên</span>:William Parker,</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- course -->
-				<div class="mix col-lg-3 col-md-4 col-sm-6 finance">
-					<div class="course-item">
-						<div class="course-thumb set-bg" data-setbg="img/courses/5.jpg">
-							<div class="price"><a href="/khoahoc-2">Giá: 1.000.000 vnd</a></div>
-						</div>
-						<div class="course-info">
-							<div class="course-text">
-								<h5>IT Development</h5>
-								<p>Lorem ipsum dolor sit amet, consectetur</p>
-								<div class="students">120 học sinh</div>
-							</div>
-							<div class="course-author">
-								<div class="ca-pic set-bg" data-setbg="img/authors/5.jpg"></div>
-								<p><span>Giáo viên</span>:William Parker,</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- course -->
-				<div class="mix col-lg-3 col-md-4 col-sm-6 design">
-					<div class="course-item">
-						<div class="course-thumb set-bg" data-setbg="img/courses/6.jpg">
-							<div class="price"><a href="/khoahoc-2">Giá: 1.000.000 vnd</a></div>
-						</div>
-						<div class="course-info">
-							<div class="course-text">
-								<h5>Socia Media</h5>
-								<p>Lorem ipsum dolor sit amet, consectetur</p>
-								<div class="students">120 học sinh</div>
-							</div>
-							<div class="course-author">
-								<div class="ca-pic set-bg" data-setbg="img/authors/6.jpg"></div>
-								<p><span>Giáo viên</span>:William Parker,</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- course -->
-				<div class="mix col-lg-3 col-md-4 col-sm-6 web">
-					<div class="course-item">
-						<div class="course-thumb set-bg" data-setbg="img/courses/7.jpg">
-							<div class="price"><a href="/khoahoc-2">Giá: 1.000.000 vnd</a></div>
-						</div>
-						<div class="course-info">
-							<div class="course-text">
-								<h5>Quản trị mạng</h5>
-								<p>Lorem ipsum dolor sit amet, consectetur</p>
-								<div class="students">120 học sinh</div>
-							</div>
-							<div class="course-author">
-								<div class="ca-pic set-bg" data-setbg="img/authors/7.jpg"></div>
-								<p><span>Giáo viên</span>:William Parker,</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- course -->
-				<div class="mix col-lg-3 col-md-4 col-sm-6 photo">
-					<div class="course-item">
-						<div class="course-thumb set-bg" data-setbg="img/courses/8.jpg">
-							<div class="price"><a href="/khoahoc-2">Giá: 1.000.000 vnd</a></div>
-						</div>
-						<div class="course-info">
-							<div class="course-text">
-								<h5>HTML 5</h5>
-								<p>Lorem ipsum dolor sit amet, consectetur</p>
-								<div class="students">120 học sinh</div>
-							</div>
-							<div class="course-author">
-								<div class="ca-pic set-bg" data-setbg="img/authors/8.jpg"></div>
-								<p><span>Giáo viên</span>:William Parker</p>
-							</div>
+						<div class="course-author">
+							<div class="ca-pic set-bg" data-setbg="img/authors/1.jpg"></div>
+							<p><span>Giáo viên</span>:<%=item.KH_GIAOVIEN %>,</p>
 						</div>
 					</div>
 				</div>
 			</div>
+			<%})%>
 		</div>
-	</section>
-	<!-- course section end -->
+	</div>
+</section>
+<!-- course section end -->

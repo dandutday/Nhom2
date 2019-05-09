@@ -17,7 +17,7 @@
 						<li><a href="/khoahoc">Khoá học</a></li>
 						<li><a href="/tintuc">Tin tức</a></li>
 						<li><a href="/lienhe">Liên hệ</a></li>
-						<% if(session.name==null) {%>
+						<% if(session.user==null) {%>
 						<li><a href="/lienhe" data-toggle="modal" data-target="#modaldangnhap">Đăng nhập</a></li>
 						<div class="modal fade" id="modaldangnhap" role="dialog">
 							<div class="modal-dialog">
@@ -76,7 +76,7 @@
 							<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-								<%=session.name %>
+								<%=session.user.TK_USERNAME %>
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								<a class="dropdown-item" href="/thongtin">Thông tin</a>

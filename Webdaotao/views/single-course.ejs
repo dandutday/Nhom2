@@ -51,35 +51,29 @@
                                 <div class="course-author">
                                     <div class="ca-pic set-bg" data-setbg="img/authors/2.jpg"></div>
                                     <h6>Giáo viên</h6>
-                                    <p>William Parker</p>
+                                    <p><%=chitietkhoahoc.KH_GIAOVIEN %></p>
                                 </div>
                             </div>
                             <div class="course-meta">
                                 <div class="cm-info">
-                                    <h6>Category</h6>
-                                    <p>Development</p>
+                                    <h6>Môn</h6>
+                                    <p><%=chitietkhoahoc.MH_TEN %></p>
                                 </div>
                             </div>
                             <div class="course-meta">
                                 <div class="cm-info">
                                     <h6>Học sinh</h6>
-                                    <p>120 Học sinh đăng ký</p>
+                                    <p><%=chitietkhoahoc.LP_SISO %> Học sinh đăng ký</p>
                                 </div>
                             </div>
                             <div class="course-meta">
                                 <div class="cm-info">
-                                    <h6>Đánh giá</h6>
-                                    <p>2 Reviews <span class="rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star is-fade"></i>
-                                        </span></p>
+                                    <h6>Ngày bắt đầu</h6>
+                                    <p><%=chitietkhoahoc.KH_BATDAU %></p>
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="site-btn price-btn">Giá: 1.000.000 vnd</a>
+                        <a href="#" class="site-btn price-btn">Giá: <%=chitietkhoahoc.KH_HOCPHI %></a>
                         <a href="#" class="site-btn buy-btn" data-toggle="modal" data-target="#myModal">Đăng kí ngay</a>
                         <div class="modal fade" id="myModal" role="dialog">
 							<div class="modal-dialog">
