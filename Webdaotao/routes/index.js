@@ -22,7 +22,7 @@ cn.querys.query("SELECT a.MH_ID,a.KH_BATDAU,a.KH_KETTHUC,a.KH_HOCPHI,a.KH_NAMHOC
 router.get('/trangchu', function (req, res, next) {
 
   console.log(req.session.name);
-  res.render('index', { title: 'Express', monhoc: monhoc, khoahoc: khoahoc });
+  res.render('index', { title: 'Web đăng kí khoá học', monhoc: monhoc, khoahoc: khoahoc });
 });
 router.get('/', function (req, res, next) {
 
@@ -54,10 +54,6 @@ router.post('/dangky', urlencodedParser, function (req, res, next) {
     });
     console.log("1 record inserted");
   });
-  // cn.querys.query("INSERT INTO `nguoidung`(`ND_ID`, `TK_ID`, `ND_HO`, `ND_TEN`, `ND_NGAYSINH`, `ND_DIACHI`, `ND_HOCVAN`) VALUES ('0','"+insertid+"','"+req.body.ho+"','"+req.body.ten+"','','','')", function (err, result, fields) {
-  //   if (err) throw err;
-  //   console.log("1 record inserted");
-  // });
   res.redirect('/trangchu');
 });
 router.get('/dangxuat', function (req, res, next) {
