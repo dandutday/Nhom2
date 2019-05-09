@@ -37,7 +37,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/taikhoan/them', function (req, res, next) {
 
-  // con.query("INSERT INTO `taikhoan`('"+5+"', `NQ_ID`, `TK_USERNAME`, `TK_PASSWORD`, `TK_MAIL`, `TK_PHONE`, `TK_LOAI`, `TK_NGAYDK`) VALUES ("+5+",'"+req.body.loai+"',[value-3],[value-4],[value-5],[value-6],[value-7],[value-8])", function (err, result, fields) {
+  // con.query("INSERT INTO `taikhoan`('0', `NQ_ID`, `TK_USERNAME`, `TK_PASSWORD`, `TK_MAIL`, `TK_PHONE`, `TK_LOAI`, `TK_NGAYDK`) VALUES ("+5+",'"+req.body.loai+"',[value-3],[value-4],[value-5],[value-6],[value-7],[value-8])", function (err, result, fields) {
   //   if (err) throw err;
   //   res.render('./admin/users', { title: 'Express',taikhoan:result });
   // });

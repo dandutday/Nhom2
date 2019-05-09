@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 09, 2019 lúc 08:03 AM
+-- Thời gian đã tạo: Th5 09, 2019 lúc 01:40 PM
 -- Phiên bản máy phục vụ: 10.1.26-MariaDB
 -- Phiên bản PHP: 7.1.9
 
@@ -34,14 +34,6 @@ CREATE TABLE `cap` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONSHIPS FOR TABLE `cap`:
---   `Q_ID`
---       `quyen` -> `Q_ID`
---   `NQ_ID`
---       `nhomquyen` -> `NQ_ID`
---
-
---
 -- Đang đổ dữ liệu cho bảng `cap`
 --
 
@@ -70,14 +62,6 @@ CREATE TABLE `dangky` (
   `DK_DAPHANLOP` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- RELATIONSHIPS FOR TABLE `dangky`:
---   `TK_ID`
---       `taikhoan` -> `TK_ID`
---   `KH_ID`
---       `khoahoc` -> `KH_ID`
---
-
 -- --------------------------------------------------------
 
 --
@@ -91,14 +75,6 @@ CREATE TABLE `diem` (
   `D_DIEM` int(11) DEFAULT NULL,
   `D_KETQUA` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONSHIPS FOR TABLE `diem`:
---   `TK_ID`
---       `taikhoan` -> `TK_ID`
---   `MH_ID`
---       `monhoc` -> `MH_ID`
---
 
 -- --------------------------------------------------------
 
@@ -116,14 +92,6 @@ CREATE TABLE `hocphi` (
   `HP_TINHTRANG` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- RELATIONSHIPS FOR TABLE `hocphi`:
---   `TK_ID`
---       `taikhoan` -> `TK_ID`
---   `KH_ID`
---       `khoahoc` -> `KH_ID`
---
-
 -- --------------------------------------------------------
 
 --
@@ -139,12 +107,6 @@ CREATE TABLE `khoahoc` (
   `KH_NAMHOC` varchar(10) DEFAULT NULL,
   `KH_GIAOVIEN` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONSHIPS FOR TABLE `khoahoc`:
---   `MH_ID`
---       `monhoc` -> `MH_ID`
---
 
 --
 -- Đang đổ dữ liệu cho bảng `khoahoc`
@@ -173,10 +135,6 @@ CREATE TABLE `loaitintuc` (
   `LT_MOTA` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- RELATIONSHIPS FOR TABLE `loaitintuc`:
---
-
 -- --------------------------------------------------------
 
 --
@@ -188,12 +146,6 @@ CREATE TABLE `lop` (
   `KH_ID` smallint(6) NOT NULL,
   `LP_SISO` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONSHIPS FOR TABLE `lop`:
---   `KH_ID`
---       `khoahoc` -> `KH_ID`
---
 
 --
 -- Đang đổ dữ liệu cho bảng `lop`
@@ -224,10 +176,6 @@ CREATE TABLE `monhoc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONSHIPS FOR TABLE `monhoc`:
---
-
---
 -- Đang đổ dữ liệu cho bảng `monhoc`
 --
 
@@ -248,26 +196,19 @@ INSERT INTO `monhoc` (`MH_ID`, `MH_TEN`, `MH_NOIDUNG`, `MH_THOILUONG`) VALUES
 CREATE TABLE `nguoidung` (
   `ND_ID` smallint(6) NOT NULL,
   `TK_ID` smallint(6) NOT NULL,
-  `ND_HO` varchar(20) DEFAULT NULL,
-  `ND_TEN` varchar(10) DEFAULT NULL,
+  `ND_HO` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ND_TEN` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `ND_NGAYSINH` date DEFAULT NULL,
-  `ND_DIACHI` varchar(100) DEFAULT NULL,
-  `ND_HOCVAN` varchar(100) DEFAULT NULL
+  `ND_DIACHI` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ND_HOCVAN` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONSHIPS FOR TABLE `nguoidung`:
---   `TK_ID`
---       `taikhoan` -> `TK_ID`
---
 
 --
 -- Đang đổ dữ liệu cho bảng `nguoidung`
 --
 
 INSERT INTO `nguoidung` (`ND_ID`, `TK_ID`, `ND_HO`, `ND_TEN`, `ND_NGAYSINH`, `ND_DIACHI`, `ND_HOCVAN`) VALUES
-(1, 1, '?àm', 'Duy', '1997-07-28', '11/3khe sanh', '??i h?c'),
-(2, 1, '?àm', 'Duy', '1997-07-28', '11-3khe sanh', '??i h?c');
+(1, 1, 'Đàm', 'Duy', '1997-07-28', '11/3khe sanh', 'Đại học');
 
 -- --------------------------------------------------------
 
@@ -280,10 +221,6 @@ CREATE TABLE `nhomquyen` (
   `NQ_TEN` varchar(50) DEFAULT NULL,
   `NQ_MOTA` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONSHIPS FOR TABLE `nhomquyen`:
---
 
 --
 -- Đang đổ dữ liệu cho bảng `nhomquyen`
@@ -309,10 +246,6 @@ CREATE TABLE `quyen` (
   `Q_MOTA` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `Q_GHICHU` text CHARACTER SET utf8 COLLATE utf8_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONSHIPS FOR TABLE `quyen`:
---
 
 --
 -- Đang đổ dữ liệu cho bảng `quyen`
@@ -342,12 +275,6 @@ CREATE TABLE `taikhoan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONSHIPS FOR TABLE `taikhoan`:
---   `NQ_ID`
---       `nhomquyen` -> `NQ_ID`
---
-
---
 -- Đang đổ dữ liệu cho bảng `taikhoan`
 --
 
@@ -369,12 +296,6 @@ CREATE TABLE `thoikhoabieu` (
   `TKB_GIOKETTHUC` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- RELATIONSHIPS FOR TABLE `thoikhoabieu`:
---   `LP_ID`
---       `lop` -> `LP_ID`
---
-
 -- --------------------------------------------------------
 
 --
@@ -389,14 +310,6 @@ CREATE TABLE `tintuc` (
   `TT_NOIDUNG` text,
   `TT_GHICHU` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONSHIPS FOR TABLE `tintuc`:
---   `TK_ID`
---       `taikhoan` -> `TK_ID`
---   `LT_ID`
---       `loaitintuc` -> `LT_ID`
---
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -498,6 +411,16 @@ ALTER TABLE `tintuc`
   ADD PRIMARY KEY (`TT_ID`),
   ADD KEY `FK_DANG` (`TK_ID`),
   ADD KEY `FK_GOM` (`LT_ID`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `nguoidung`
+--
+ALTER TABLE `nguoidung`
+  MODIFY `ND_ID` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

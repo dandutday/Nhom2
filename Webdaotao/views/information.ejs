@@ -65,7 +65,34 @@
 			<div class="tab-content" id="myTabContent">
 				<!-- single tab content -->
 				<div class="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
-					<p>Tên: <%= session.name%></p>
+						<table class="table table-striped">
+								<tbody>
+									<tr>
+										<th>Họ</th>
+										<td><%= session.user.ND_HO%></td>
+									</tr>
+									<tr>
+										<th>Tên</th>
+										<td><%= session.user.ND_TEN%></td>
+									</tr>
+									<tr>
+										<th>Ngày sinh</th>
+										<td><%= session.user.ND_NGAYSINH%></td>
+									</tr>
+									<tr>
+										<th>Địa chỉ</th>
+										<td><%= session.user.ND_DIACHI%></td>
+									</tr>
+									<tr>
+										<th>Số điện thoại</th>
+										<td><%= session.user.TK_PHONE%></td>
+									</tr>
+									<tr>
+										<th>Học vấn</th>
+										<td><%= session.user.ND_HOCVAN%></td>
+									</tr>
+								</tbody>
+							</table>
 				</div>
 				<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
 					<div class="table-responsive-md">
