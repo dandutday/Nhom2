@@ -2,14 +2,13 @@
 <section class="course-section spad">
 	<div class="container">
 		<div class="section-title mb-0">
-			<h2>Các khoá học đặc trưng</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris
-				scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
+			<h2>Gợi ý khoá học và giáo viên xuất sắc</h2>
+			<p>Đây là danh sách các khoá học với những giáo viên được đánh giá cao của chúng tôi</p>
 		</div>
 	</div>
 	<div class="course-warp">
 		<ul class="course-filter controls">
-			<li class="control active" data-filter="all">All</li>
+			<li class="control active" data-filter="all">Tất cả</li>
 			<% monhoc.forEach(function(item){%>
 			<li class="control" data-filter=".MH<%=item.MH_ID%>"><%=item.MH_TEN %></li>
 			<%})%>
@@ -25,7 +24,7 @@
 					<div class="course-info">
 						<div class="course-text">
 							<h5><%=item.MH_TEN %></h5>
-							<p>Lorem ipsum dolor sit amet, consectetur</p>
+							<p><%=item.MH_NOIDUNG%></p>
 							<div class="students"><%=item.LP_SISO %> Học sinh</div>
 						</div>
 						<div class="course-author">

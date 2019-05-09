@@ -14,7 +14,7 @@ cn.querys.query("SELECT * FROM monhoc", function (err, rows, fields) {
   if (err) throw err;
   monhoc = rows;
 });
-cn.querys.query("SELECT a.MH_ID,a.KH_BATDAU,a.KH_KETTHUC,a.KH_HOCPHI,a.KH_NAMHOC,a.KH_GIAOVIEN,a.KH_ID,b.MH_TEN,c.LP_SISO FROM khoahoc a,monhoc b,lop c WHERE a.MH_ID=b.MH_ID AND a.KH_ID =c.KH_ID LIMIT 8", function (err, rows, fields) {
+cn.querys.query("SELECT a.MH_ID,a.KH_BATDAU,a.KH_KETTHUC,a.KH_HOCPHI,a.KH_NAMHOC,a.KH_GIAOVIEN,a.KH_ID,b.MH_TEN,b.MH_NOIDUNG,c.LP_SISO FROM khoahoc a,monhoc b,lop c WHERE a.MH_ID=b.MH_ID AND a.KH_ID =c.KH_ID LIMIT 8", function (err, rows, fields) {
   if (err) throw err;
   khoahoc = rows;
 });
@@ -79,7 +79,7 @@ router.get('/khoahoc-:id', function (req, res, next) {
 
 });
 router.get('/tintuc', function (req, res, next) {
-  res.render('news', { title: 'Tin tức' });
+  res.render('news', { title: 'Tin tức',monhoc: monhoc });
 });
 
 router.get('/lienhe', function (req, res, next) {
