@@ -43,8 +43,8 @@
             <div class="course-meta-area">
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1">
-                        <div class="course-note">Featured Course</div>
-                        <h3>HTNL5 & CSS For Begginers</h3>
+                        <div class="course-note">Tên khoá học</div>
+                        <h3><%=chitietkhoahoc.KH_TEN %></h3>
                         <div class="course-metas">
                             <div class="course-meta">
                                 <div class="course-author">
@@ -68,7 +68,9 @@
                             <div class="course-meta">
                                 <div class="cm-info">
                                     <h6>Ngày bắt đầu</h6>
-                                    <p><%=chitietkhoahoc.KH_BATDAU %></p>
+                                    <% let  date = JSON.stringify(chitietkhoahoc.KH_BATDAU) %>
+                                    <% date = date.slice(1,11) %>
+                                    <p><%= date %></p>
                                 </div>
                             </div>
                         </div>
@@ -85,25 +87,27 @@
                                     </div>
                                     <div class="modal-body">
                                         <form action="/dangkikhoahoc" class="signup-form" method="post">
-                                            <h4>Chúc mừng bạn đã đăng ký khoá học thành công!</h4>
+                                            <h4>Xác nhận đăng ký khoá học!</h4>
                                             <ul>
                                                 <br>
                                                 <li>Môn học: <%=chitietkhoahoc.MH_TEN %></li>
                                                 <p>--------------------------------------------------------</p>
-                                                <li>Ngày khai giảng: 23/05/2019</li>
+                                                <li>Tên khoá học: <%=chitietkhoahoc.KH_TEN %></li>
+                                                <p>--------------------------------------------------------</p>
+                                                <li>Ngày khai giảng: <%= date %></li>
                                                 <p>--------------------------------------------------------</p>
                                                 <li>Tên giáo viên: <%=chitietkhoahoc.KH_GIAOVIEN %></li>
                                                 <p>--------------------------------------------------------</p>
                                                 <li>Học phí: <%=chitietkhoahoc.KH_HOCPHI %></li>
                                                 <p>--------------------------------------------------------</p>
                                                 <br>
-                                                </ul>
-                                                
-                                                <input type="submit" class="site-btn" value="Xác nhận">
+                                            </ul>
+
+                                            <input type="submit" class="site-btn" value="Xác nhận">
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Đóng"></button>
                                     </div>
                                 </div>
 

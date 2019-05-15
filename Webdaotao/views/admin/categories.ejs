@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Star Admin Free Bootstrap-4 Admin Dashboard Template</title>
+    <% include _style%>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <% include _navbar%>
+        <div class="container-fluid page-body-wrapper">
+            <% include _sidebar%>
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Quản lý môn học</h4>
+                                <button type="button" class="btn btn-success btn-rounded btn-fw" data-toggle="modal"
+                                    data-target="#myModal">Thêm</button>
+
+                                <div class="modal fade" id="myModal" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Thêm môn học</h4>
+                                                        <form action="/quanly/monhoc/them" class="forms-sample"
+                                                            method="POST">
+                                                            <div class="form-group">
+                                                                <label for="monhoc">Tên môn học</label>
+                                                                <input type="text" class="form-control" id="monhoc"
+                                                                    placeholder="Nhập tên môn học" name="monhoc">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="noidung">Nội dung </label>
+                                                                <input type="text" class="form-control" id="noidung"
+                                                                    placeholder="Nội dung" name="noidung">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="thoiluong">Thời lượng</label>
+                                                                <input type="text" class="form-control" id="thoiluong"
+                                                                    placeholder="Số tiết" name="thoiluong">
+                                                            </div>
+                                                            <button type="submit"
+                                                                class="btn btn-success mr-2">Thêm</button>
+                                                            <button type="reset" class="btn btn-light">Xoá</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">Đóng</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Môn học</th>
+                                                <th>Nội dung</th>
+                                                <th>Số tiết</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <% monhoc.forEach(function(item){%>
+                                                <td><%=item.MH_TEN%></td>
+                                                <td><%=item.MH_NOIDUNG  %></td>
+                                                <td><%=item.MH_THOILUONG  %></td>
+                                                <td>
+                                                    <a class="btn btn-icons btn-rounded btn-danger"
+                                                        href="/quanly/monhoc/xoa-<%=item.MH_ID %>"><i
+                                                            class="fa fa-trash-o"></i></a>
+                                                    <a class="btn btn-icons btn-rounded btn-primary"
+                                                        href="/quanly/monhoc/"><i class="fa fa-pencil"></i></a>
+                                                </td>
+                                            </tr>
+                                            <%})%>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <% include _footer%>
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <% include _javascript%>
+    <!-- Custom js for this page-->
+    <!-- End custom js for this page-->
+</body>
+
+</html>

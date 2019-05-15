@@ -50,8 +50,8 @@
 		<div class="tab-element">
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item">
-					<a class="nav-link active show" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1"
-						aria-selected="false">Thông tin cá nhân</a>
+					<a class="nav-link active show" id="1-tab" data-toggle="tab" href="#tab-1" role="tab"
+						aria-controls="tab-1" aria-selected="false">Thông tin cá nhân</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2"
@@ -59,94 +59,151 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link " id="3-tab" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3"
-						aria-selected="true">Vivamus sollici</a>
+						aria-selected="true">Khoá học đã đăng kí</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " id="4-tab" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4"
+						aria-selected="true">Học phí</a>
 				</li>
 			</ul>
 			<div class="tab-content" id="myTabContent">
 				<!-- single tab content -->
 				<div class="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
-						<table class="table table-striped">
-								<tbody>
-									<tr>
-										<th>Họ</th>
-										<td><%= session.user.ND_HO%></td>
-									</tr>
-									<tr>
-										<th>Tên</th>
-										<td><%= session.user.ND_TEN%></td>
-									</tr>
-									<tr>
-										<th>Ngày sinh</th>
-										<td><%= session.user.ND_NGAYSINH%></td>
-									</tr>
-									<tr>
-										<th>Địa chỉ</th>
-										<td><%= session.user.ND_DIACHI%></td>
-									</tr>
-									<tr>
-										<th>Số điện thoại</th>
-										<td><%= session.user.TK_PHONE%></td>
-									</tr>
-									<tr>
-										<th>Học vấn</th>
-										<td><%= session.user.ND_HOCVAN%></td>
-									</tr>
-								</tbody>
-							</table>
+					<table class="table table-striped">
+						<tbody>
+							<tr>
+								<th>Họ</th>
+								<td><%= session.user.ND_HO%></td>
+							</tr>
+							<tr>
+								<th>Tên</th>
+								<td><%= session.user.ND_TEN%></td>
+							</tr>
+							<tr>
+								<th>Ngày sinh</th>
+								<td><%= session.user.ND_NGAYSINH%></td>
+							</tr>
+							<tr>
+								<th>Địa chỉ</th>
+								<td><%= session.user.ND_DIACHI%></td>
+							</tr>
+							<tr>
+								<th>Số điện thoại</th>
+								<td><%= session.user.TK_PHONE%></td>
+							</tr>
+							<tr>
+								<th>Học vấn</th>
+								<td><%= session.user.ND_HOCVAN%></td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 				<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
 					<div class="table-responsive-md">
 						<table class="table table-striped">
 							<thead>
-							  <tr>
-								<th scope="col">#</th>
-								<th scope="col">Thứ 2</th>
-								<th scope="col">Thứ 3</th>
-								<th scope="col">Thứ 4</th>
-								<th scope="col">Thứ 5</th>
-								<th scope="col">Thứ 6</th>
-								<th scope="col">Thứ 7</th>
-								<th scope="col">Chủ Nhật</th>
-							  </tr>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Thứ 2</th>
+									<th scope="col">Thứ 3</th>
+									<th scope="col">Thứ 4</th>
+									<th scope="col">Thứ 5</th>
+									<th scope="col">Thứ 6</th>
+									<th scope="col">Thứ 7</th>
+									<th scope="col">Chủ Nhật</th>
+								</tr>
 							</thead>
 							<tbody>
-							  <tr>
-								<th scope="row">Sáng</th>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-								<td>@mdo</td>
-							  </tr>
-							  <tr>
-								<th scope="row">Chiều</th>
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td>@fat</td>
-								<td>@mdo</td>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-							  </tr>
-							  <tr>
-								<th scope="row">Tối</th>
-								<td>Larry</td>
-								<td>the Bird</td>
-								<td>@twitter</td>
-								<td>@mdo</td>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-							  </tr>
+								<tr>
+									<th scope="row">Sáng</th>
+									<td>Mark</td>
+									<td>Otto</td>
+									<td>@mdo</td>
+									<td>Mark</td>
+									<td>Otto</td>
+									<td>@mdo</td>
+									<td>@mdo</td>
+								</tr>
+								<tr>
+									<th scope="row">Chiều</th>
+									<td>Jacob</td>
+									<td>Thornton</td>
+									<td>@fat</td>
+									<td>@mdo</td>
+									<td>Mark</td>
+									<td>Otto</td>
+									<td>@mdo</td>
+								</tr>
+								<tr>
+									<th scope="row">Tối</th>
+									<td>Larry</td>
+									<td>the Bird</td>
+									<td>@twitter</td>
+									<td>@mdo</td>
+									<td>Mark</td>
+									<td>Otto</td>
+									<td>@mdo</td>
+								</tr>
 							</tbody>
-						  </table>
-					  </div>
+						</table>
+					</div>
 				</div>
 				<div class="tab-pane fade " id="tab-3" role="tabpanel" aria-labelledby="tab-3">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque,
-						at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
+					<%var hocphi=0;%>
+					<% khoahocdadangki.forEach(function(item){%>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th class="text-center" colspan="2">Khoá học <%=item.KH_GIAOVIEN %></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>Ngày bắt đầu</th>
+								<% let  date = JSON.stringify(item.KH_BATDAU) %>
+								<% date = date.slice(1,11) %>
+								<td><%= date %></td>
+							</tr>
+							<tr>
+								<th>Học phí</th>
+								<td><%= item.KH_HOCPHI %></td>
+							</tr>
+							<tr>
+								<th>Môn</th>
+								<td><%= item.MH_TEN %></td>
+							</tr>
+							<tr>
+								<th>Tên khoá </th>
+								<td><%= item.KH_TEN %></td>
+							</tr>
+							<tr>
+								<th>Số tiết</th>
+								<td><%= item.MH_THOILUONG  %></td>
+							</tr>
+							<tr>
+									<th>Huỷ khoá học</th>
+								<td><a class="btn btn-icons btn-rounded btn-danger"
+										href="/khoahoc/xoa-<%=item.DK_ID %>"><i class="fa fa-trash-o"></i></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<% hocphi+=item.KH_HOCPHI%>
+					<%})%>
+				</div>
+				<div class="tab-pane fade " id="tab-4" role="tabpanel" aria-labelledby="tab-4">
+					<table class="table table-striped">
+						<tbody>
+							<tr>
+								<th>Tình trạng</th>
+								<%if(hocphi==0){%>
+								<td>Đã hoàn thành</td>
+								<%} else {%>
+								<td>Còn nợ:<%= hocphi %></td>
+								<%}%>
+								</tr>
+							</tbody>
+						</table>
 				</div>
 			</div>
 		</div>
@@ -157,17 +214,17 @@
 
 	<!-- footer section -->
 	<%include _footer%>
-	<!-- footer section end -->
+								<!-- footer section end -->
 
 
-		<!--====== Javascripts & Jquery ======-->
-		<% include _javascripts.ejs%>
+								<!--====== Javascripts & Jquery ======-->
+								<% include _javascripts.ejs%>
 
 
-	<!-- load for map -->
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWTIlluowDL-X4HbYQt3aDw_oi2JP0Krc&sensor=false"></script>
-	<script src="js/map.js"></script>
+								<!-- load for map -->
+								<script
+									src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWTIlluowDL-X4HbYQt3aDw_oi2JP0Krc&sensor=false"></script>
+								<script src="js/map.js"></script>
 </body>
 
 </html>

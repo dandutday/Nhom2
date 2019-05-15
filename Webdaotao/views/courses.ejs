@@ -51,8 +51,8 @@
 						</div>
 						<div class="course-info">
 							<div class="course-text">
-									<h5><%=item.MH_TEN %></h5>
-								<p><%=item.MH_NOIDUNG%></p>
+								<h5><%=item.MH_TEN %></h5>
+								<p><%=item.KH_TEN%></p>
 								<div class="students"><%=item.LP_SISO %> Học sinh</div>
 							</div>
 							<div class="course-author">
@@ -65,16 +65,18 @@
 				<%})%>
 			</div>
 			<div class="featured-courses">
+				<% for(var i=0;i < 3; i++) { %>
+				<% if(i%2==0) { %>
 				<div class="featured-course course-item">
 					<div class="course-thumb set-bg" data-setbg="img/courses/f-1.jpg">
-						<div class="price">Giá: 1.000.000 vnd</div>
+						<div class="price">Giá: <%=khoahocmoi[i].KH_HOCPHI %></div>
 					</div>
 					<div class="row">
 						<div class="col-lg-6 offset-lg-6 pl-0">
 							<div class="course-info">
 								<div class="course-text">
-									<div class="fet-note">Featured Course</div>
-									<h5>HTNL5 & CSS For Begginers</h5>
+									<div class="fet-note"><%=khoahocmoi[i].MH_TEN%></div>
+									<h5><%=khoahocmoi[i].KH_TEN%></h5>
 									<p>Lorem ipsum dolor sit amet, consectetur. Phasellus sollicitudin et nunc eu
 										efficitur. Sed ligula nulla, molestie quis ligula in, eleifend rhoncus ipsum.
 										Donec ultrices, sem vel efficitur molestie, massa nisl posuere ipsum, ut
@@ -84,22 +86,23 @@
 								</div>
 								<div class="course-author">
 									<div class="ca-pic set-bg" data-setbg="img/authors/1.jpg"></div>
-									<p>William Parker, <span>Developer</span></p>
+									<p><span>Giáo viên</span>:<%=khoahocmoi[i].KH_GIAOVIEN %></p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<%} else {%>
 				<div class="featured-course course-item">
 					<div class="course-thumb set-bg" data-setbg="img/courses/f-2.jpg">
-						<div class="price">Giá: 1.000.000 vnd</div>
+						<div class="price">Giá: <%=khoahocmoi[i].KH_HOCPHI %></div>
 					</div>
 					<div class="row">
 						<div class="col-lg-6 pr-0">
 							<div class="course-info">
 								<div class="course-text">
-									<div class="fet-note">Featured Course</div>
-									<h5>HTNL5 & CSS For Begginers</h5>
+									<div class="fet-note"><%=khoahocmoi[i].MH_TEN%></div>
+									<h5><%=khoahocmoi[i].KH_TEN%></h5>
 									<p>Lorem ipsum dolor sit amet, consectetur. Phasellus sollicitudin et nunc eu
 										efficitur. Sed ligula nulla, molestie quis ligula in, eleifend rhoncus ipsum.
 										Donec ultrices, sem vel efficitur molestie, massa nisl posuere ipsum, ut
@@ -109,12 +112,14 @@
 								</div>
 								<div class="course-author">
 									<div class="ca-pic set-bg" data-setbg="img/authors/2.jpg"></div>
-									<p>William Parker, <span>Developer</span></p>
+									<p><span>Giáo viên</span>:<%=khoahocmoi[i].KH_GIAOVIEN %></p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<%}%>
+				<%}%>
 			</div>
 		</div>
 	</section>

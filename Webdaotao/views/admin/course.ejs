@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Star Admin Free Bootstrap-4 Admin Dashboard Template</title>
+    <% include _style%>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <% include _navbar%>
+        <div class="container-fluid page-body-wrapper">
+            <% include _sidebar%>
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Quản lý khoá học</h4>
+                                <button type="button" class="btn btn-success btn-rounded btn-fw" data-toggle="modal"
+                                    data-target="#myModal">Thêm</button>
+
+                                <div class="modal fade" id="myModal" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Thêm khoá học</h4>
+                                                        <form action="/quanly/khoahoc/them" class="forms-sample"
+                                                            method="POST">
+                                                            <div class="form-group">
+                                                                <label for="mon">Môn</label>
+                                                                <select class="form-control" id="mon" name="mon">
+                                                                    <% monhoc.forEach(function(item){%>
+                                                                    <option value="<%=item.MH_ID%>"><%=item.MH_TEN %>
+                                                                    </option>
+                                                                    <%})%>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                    <label for="ten">Tên khoá học</label>
+                                                                    <input type="text" class="form-control" id="ten"
+                                                                        placeholder="Nhập tên khoá học" name="ten">
+                                                                </div>
+                                                            <div class="form-group">
+                                                                <label for="batdau">Ngày bắt đầu</label>
+                                                                <input type="date" class="form-control" id="batdau"
+                                                                    placeholder="Nhập ngày bất đầu" name="batdau">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="ketthuc">Ngày kết thúc</label>
+                                                                <input type="date" class="form-control"
+                                                                    id="ketthuc"
+                                                                    placeholder="Nhập ngày kết thúc" name="ketthuc">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="hocphi">Học phí</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="hocphi" placeholder="Nhập học phí"
+                                                                    name="hocphi">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="namhoc">Năm học</label>
+                                                                <input type="number" class="form-control" id="namhoc"
+                                                                    placeholder="Nhập năm học" name="namhoc">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="giaovien">Giáo viên</label>
+                                                                <input type="text" class="form-control" id="giaovien"
+                                                                    placeholder="Nhập giáo viên" name="giaovien">
+                                                            </div>
+
+                                                            <button type="submit"
+                                                                class="btn btn-success mr-2">Thêm</button>
+                                                            <button type="reset" class="btn btn-light">Xoá</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">Đóng</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Môn học</th>
+                                                <th>Tên khoá học</th>
+                                                <th>Ngày bắt đầu</th>
+                                                <th>Ngày kết thúc</th>
+                                                <th>Học phí</th>
+                                                <th>Năm học</th>
+                                                <th>Giáo viên</th>
+                                                <th>Chi tiết</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                    
+                                                <% khoahoc.forEach(function(item){%>
+                                                <td><%=item.MH_TEN%></td>
+                                                <td><%=item.KH_TEN%></td>
+                                                <% let  datestr = JSON.stringify(item.KH_BATDAU) %>
+                                                <% datestr = datestr.slice(1,11) %>
+                                                <td><%=datestr%></td>
+                                                <% let  dateend = JSON.stringify(item.KH_KETTHUC) %>
+                                                <% dateend = dateend.slice(1,11) %>
+                                                <td><%=dateend %></td>
+                                                <td><%=item.KH_HOCPHI %></td>
+                                                <td><%=item.KH_NAMHOC %></td>
+                                                <td><%=item.KH_GIAOVIEN %></td>
+                                                <td>
+                                                    <a class="btn btn-icons btn-rounded btn-danger"
+                                                        href="/quanly/khoahoc/xoa-<%=item.KH_ID%>"><i
+                                                            class="fa fa-trash-o"></i></a>
+                                                    <a class="btn btn-icons btn-rounded btn-primary"
+                                                        href="/quanly/taikhoan/"><i class="fa fa-pencil"></i></a>
+                                                </td>
+                                            </tr>
+                                            <%})%>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <% include _footer%>
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <% include _javascript%>
+    <!-- Custom js for this page-->
+    <!-- End custom js for this page-->
+</body>
+
+</html>

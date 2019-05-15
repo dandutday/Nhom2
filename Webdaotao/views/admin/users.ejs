@@ -31,7 +31,7 @@
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <h4 class="card-title">Thêm tài khoản</h4>
-                                                        <form action="/quanly/themtaikhoan" class="forms-sample"
+                                                        <form action="/quanly/taikhoan/them" class="forms-sample"
                                                             method="POST">
                                                             <div class="form-group">
                                                                 <label for="tendangnhap">Tên đăng nhập</label>
@@ -41,8 +41,8 @@
                                                             <div class="form-group">
                                                                 <label for="exampleInputPassword1">Password</label>
                                                                 <input type="password" class="form-control"
-                                                                    id="exampleInputPassword1" placeholder="Nhập mật khẩu"
-                                                                    name="password">
+                                                                    id="exampleInputPassword1"
+                                                                    placeholder="Nhập mật khẩu" name="password">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1">Email</label>
@@ -51,16 +51,27 @@
                                                                     name="email">
                                                             </div>
                                                             <div class="form-group">
+                                                                <label for="ho">Họ</label>
+                                                                <input type="text" class="form-control" id="ho"
+                                                                    placeholder="Nhập họ" name="ho">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="ten">Tên</label>
+                                                                <input type="text" class="form-control" id="ten"
+                                                                    placeholder="Nhập tên" name="ten">
+                                                            </div>
+                                                            <div class="form-group">
                                                                 <label for="sodienthoai">Số điện thoại</label>
                                                                 <input type="text" class="form-control" id="sodienthoai"
-                                                                    placeholder="Số điện thoại" name="sodienthoai">
+                                                                    placeholder="Số điện thoại" name="sodt">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="loai">Loại</label>
-                                                                <select class="form-control" id="loai">
-                                                                    <option value="1">1</option>
-                                                                    <option value="1">2</option>
-                                                                    <option value="1">3</option>
+                                                                <select class="form-control" id="loai" name="nhomquyen">
+                                                                    <% nhomquyen.forEach(function(item){%>
+                                                                    <option value="<%=item.NQ_ID%>"><%=item.NQ_TEN%>
+                                                                    </option>
+                                                                    <%})%>
                                                                 </select>
                                                             </div>
                                                             <button type="submit"
@@ -88,6 +99,9 @@
                                                 <th>Ngày tạo</th>
                                                 <th>Điện thoại</th>
                                                 <th>E-mail</th>
+                                                <th>Quyền</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Học vấn</th>
                                                 <th>Chi tiết</th>
                                             </tr>
                                         </thead>
@@ -96,17 +110,105 @@
                                                 <% taikhoan.forEach(function(item){%>
                                                 <td><%=item.TK_USERNAME%></td>
                                                 <td><%=item.TK_PASSWORD%></td>
-                                                <td><%=item.TK_NGAYDK%></td>
+                                                <% let  date = JSON.stringify(item.TK_NGAYDK) %>
+                                                <% date = date.slice(1,11) %>
+                                                <td><%= date %></td>
                                                 <td><%=item.TK_PHONE%></td>
                                                 <td><%=item.TK_MAIL%></td>
+                                                <td><%=item.NQ_TEN%></td>
+                                                <td><%=item.ND_DIACHI %></td>
+                                                <td><%=item.ND_HOCVAN %></td>
                                                 <td>
-                                                    <button type="button"
-                                                        class="btn btn-icons btn-rounded btn-danger"><i
-                                                            class="fa fa-trash-o"></i></button>
-                                                    <button type="button"
-                                                        class="btn btn-icons btn-rounded btn-primary"><i
-                                                            class="fa fa-pencil"></i></button>
+                                                    <a class="btn btn-icons btn-rounded btn-danger"
+                                                        href="/quanly/taikhoan/xoa-<%=item.TK_ID %>"><i
+                                                            class="fa fa-trash-o"></i></a>
+                                                    <a class="btn btn-icons btn-rounded btn-primary" data-toggle="modal"
+                                                        data-target="#suataikhoan<%=item.TK_ID %>"><i class="fa fa-pencil"></i></a>
                                                 </td>
+                                                <div class="modal fade" id="suataikhoan<%=item.TK_ID %>" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <h4 class="card-title">Sửa tài khoản</h4>
+                                                                        <form action="/quanly/taikhoan/sua-<%=item.TK_ID %>" class="forms-sample"
+                                                                            method="POST">
+                                                                            <div class="form-group">
+                                                                                <label for="tendangnhap">Tên đăng nhập</label>
+                                                                                <input type="text" class="form-control" id="tendangnhap"
+                                                                                    placeholder="Tên đăng nhập" name="username" value="<%=item.TK_USERNAME%>">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputPassword1">Password</label>
+                                                                                <input type="password" class="form-control"
+                                                                                    id="exampleInputPassword1"
+                                                                                    placeholder="Nhập mật khẩu" name="password" value="<%=item.TK_PASSWORD%>">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputEmail1">Email</label>
+                                                                                <input type="email" class="form-control"
+                                                                                    id="exampleInputEmail1" placeholder="Nhập email"
+                                                                                    name="email" value="<%=item.TK_MAIL%>">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="ho">Họ</label>
+                                                                                <input type="text" class="form-control" id="ho"
+                                                                                    placeholder="Nhập họ" name="ho" value="<%=item.ND_HO %>">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="ten">Tên</label>
+                                                                                <input type="text" class="form-control" id="ten"
+                                                                                    placeholder="Nhập tên" name="ten" value="<%=item.ND_TEN %>">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="sodienthoai">Số điện thoại</label>
+                                                                                <input type="text" class="form-control" id="sodienthoai"
+                                                                                    placeholder="Số điện thoại" name="sodt" value="<%=item.TK_PHONE%>">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="diachi">Địa chỉ</label>
+                                                                                <input type="text" class="form-control" id="diachi"
+                                                                                    placeholder="Địa chỉ" name="diachi" value="<%=item.ND_DIACHI%>">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="hocvan">Học vấn</label>
+                                                                                <input type="text" class="form-control" id="hocvan"
+                                                                                    placeholder="Học vấn" name="hocvan" value="<%=item.ND_HOCVAN%>">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="ngaysinh">Ngày sinh</label>
+                                                                                <% let  ns = JSON.stringify(item.ND_NGAYSINH ) %>
+                                                                                <% ns = ns.slice(1,11) %>
+                                                                                <input type="date" class="form-control" id="ngaysinh"
+                                                                                    placeholder="Ngày sinh" name="ngaysinh" value="<%=ns %>">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="loai">Loại</label>
+                                                                                <select class="form-control" id="loai" name="nhomquyen">
+                                                                                    <% nhomquyen.forEach(function(itemnq){%>
+                                                                                    <option value="<%=itemnq.NQ_ID%>"><%=itemnq.NQ_TEN%>
+                                                                                    </option>
+                                                                                    <%})%>
+                                                                                </select>
+                                                                            </div>
+                                                                            <button type="submit"
+                                                                                class="btn btn-success mr-2">Cập nhật</button>
+                                                                            <button type="reset" class="btn btn-light">Xoá</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default"
+                                                                    data-dismiss="modal">Đóng</button>
+                                                            </div>
+                                                        </div>
+                
+                                                    </div>
+                                                </div>
                                             </tr>
                                             <%})%>
                                         </tbody>
