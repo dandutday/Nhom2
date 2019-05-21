@@ -19,7 +19,7 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Quản lý lớp học</h4>
+                                <h4 class="card-title">Quản lý điểm</h4>
                                 <button type="button" class="btn btn-success btn-rounded btn-fw" data-toggle="modal"
                                     data-target="#myModal">Thêm</button>
 
@@ -30,24 +30,34 @@
                                             <div class="modal-body">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h4 class="card-title">Thêm lớp học</h4>
-                                                        <form action="/quanly/lop/them" class="forms-sample"
+                                                        <h4 class="card-title">Thêm điểm</h4>
+                                                        <form action="/quanly/diem/them" class="forms-sample"
                                                             method="POST">
                                                             <div class="form-group">
-                                                                <label for="loai">Khoá học</label>
-                                                                <select class="form-control" id="loai" name="khoahoc">
-                                                                    <% khoahoc.forEach(function(itemkh){%>
-                                                                    <option value="<%=itemkh.KH_ID %>">
-                                                                        <%=itemkh.KH_TEN %>
+                                                                <label for="taikhoan">Tài khoản</label>
+                                                                <select class="form-control" id="taikhoan" name="taikhoan">
+                                                                    <% taikhoan.forEach(function(itemkh){%>
+                                                                    <option value="<%=itemkh.TK_ID  %>">
+                                                                        <%=itemkh.TK_USERNAME  %>
                                                                     </option>
                                                                     <%})%>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="siso">Sĩ số</label>
-                                                                <input type="number" class="form-control" id="siso"
-                                                                    placeholder="Nhập sĩ số" name="siso">
+                                                                <label for="monhoc">Môn học</label>
+                                                                <select class="form-control" id="monhoc" name="monhoc">
+                                                                    <% monhoc.forEach(function(itemmh){%>
+                                                                    <option value="<%=itemmh.MH_ID %>">
+                                                                        <%=itemmh.MH_TEN %>
+                                                                    </option>
+                                                                    <%})%>
+                                                                </select>
                                                             </div>
+                                                            <div class="form-group">
+                                                                    <label for="diem">Điểm</label>
+                                                                    <input type="text" class="form-control" id="diem"
+                                                                        placeholder="Nhập điểm" name="diem">
+                                                                </div>
                                                             <button type="submit"
                                                                 class="btn btn-success mr-2">Thêm</button>
                                                             <button type="reset" class="btn btn-light">Xoá</button>
@@ -68,24 +78,32 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Tên khoá học</th>
-                                                <th>Sĩ số</th>
+                                                <th>Môn học</th>
+                                                <th>Tài khoản</th>
+                                                <th>Họ</th>
+                                                <th>Tên</th>
+                                                <th>Điểm</th>
+                                                <th>Loại</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <% lophoc.forEach(function(item){%>
-                                                <td><%=item.KH_TEN%></td>
-                                                <td><%=item.LP_SISO %></td>
+                                                <% diemso.forEach(function(item){%>
+                                                <td><%=item.MH_TEN %></td>
+                                                <td><%=item.TK_USERNAME  %></td>
+                                                <td><%=item.ND_HO  %></td>
+                                                <td><%=item.ND_TEN  %></td>
+                                                <td><%=item.D_DIEM  %></td>
+                                                <td><%=item.D_KETQUA   %></td>
                                                 <td>
                                                     <a class="btn btn-icons btn-rounded btn-danger"
-                                                        href="/quanly/lop/xoa-<%=item.LP_ID %>"><i
+                                                        href="/quanly/lop/xoa-<%=item.D_ID  %>"><i
                                                             class="fa fa-trash-o"></i></a>
                                                     <a class="btn btn-icons btn-rounded btn-primary" data-toggle="modal"
-                                                        data-target="#suamonhoc<%=item.LP_ID %>"><i
+                                                        data-target="#suadiem<%=item.D_ID  %>"><i
                                                             class="fa fa-pencil"></i></a>
                                                 </td>
-                                                <div class="modal fade" id="suamonhoc<%=item.LP_ID %>" role="dialog">
+                                                <div class="modal fade" id="suadiem<%=item.D_ID  %>" role="dialog">
                                                     <div class="modal-dialog">
                                                         <!-- Modal content-->
                                                         <div class="modal-content">
@@ -93,32 +111,48 @@
                                                                 <div class="card">
                                                                     <div class="card-body">
                                                                         <h4 class="card-title">Sửa môn học</h4>
-                                                                        <form action="/quanly/lop/sua-<%=item.LP_ID %>"
+                                                                        <form action="/quanly/lop/sua-<%=item.D_ID  %>"
                                                                             class="forms-sample" method="POST">
                                                                             <div class="form-group">
-                                                                                <label for="loai">Khoá học</label>
-                                                                                <select class="form-control" id="loai"
-                                                                                    name="khoahoc">
-                                                                                    <% khoahoc.forEach(function(itemkh){%>
-                                                                                    <% if(item.KH_TEN ==itemkh.KH_TEN) {%>
-                                                                                    <option value="<%=item.KH_ID%>"
+                                                                                <label for="monhoc">Môn học</label>
+                                                                                <select class="form-control" id="monhoc"
+                                                                                    name="monhoc">
+                                                                                    <% monhoc.forEach(function(itemmh){%>
+                                                                                    <% if(item.MH_TEN ==itemmh.MH_TEN) {%>
+                                                                                    <option value="<%=itemmh.MH_ID %>"
                                                                                         selected>
-                                                                                        <%=itemkh.KH_TEN %>
+                                                                                        <%=itemmh.MH_TEN %>
                                                                                     </option>
                                                                                     <%} else {%>
-                                                                                    <option value="<%=item.KH_ID%>">
-                                                                                        <%=itemkh.KH_TEN %>
+                                                                                    <option value="<%=itemmh.MH_ID %>">
+                                                                                        <%=itemmh.MH_TEN %>
                                                                                     </option>
                                                                                     <%}%>
                                                                                     <%})%>
                                                                                 </select>
                                                                             </div>
                                                                             <div class="form-group">
-                                                                                <label for="siso">Sĩ số</label>
-                                                                                <input type="number"
-                                                                                    class="form-control" id="siso"
-                                                                                    value="<%=item.LP_SISO %>"
-                                                                                    name="siso">
+                                                                                <label for="taikhoan">Tài khoản</label>
+                                                                                <select class="form-control" id="taikhoan"
+                                                                                    name="taikhoan">
+                                                                                    <% taikhoan.forEach(function(itemtk){%>
+                                                                                    <% if(item.TK_USERNAME  ==itemtk.TK_USERNAME ) {%>
+                                                                                    <option value="<%=itemtk.TK_ID  %>"
+                                                                                        selected>
+                                                                                        <%=itemtk.TK_USERNAME  %>
+                                                                                    </option>
+                                                                                    <%} else {%>
+                                                                                    <option value="<%=itemtk.TK_ID  %>">
+                                                                                        <%=itemtk.TK_USERNAME  %>
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                    <%})%>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="diem">Điểm</label>
+                                                                                <input type="text" class="form-control" id="diem"
+                                                                                    name="diem" value="<%=item.D_DIEM  %>">
                                                                             </div>
                                                                             <button type="submit"
                                                                                 class="btn btn-success mr-2">Cập nhật</button>

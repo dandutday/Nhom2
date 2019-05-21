@@ -43,10 +43,10 @@
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
-                                                                    <label for="ten">Tên khoá học</label>
-                                                                    <input type="text" class="form-control" id="ten"
-                                                                        placeholder="Nhập tên khoá học" name="ten">
-                                                                </div>
+                                                                <label for="ten">Tên khoá học</label>
+                                                                <input type="text" class="form-control" id="ten"
+                                                                    placeholder="Nhập tên khoá học" name="ten">
+                                                            </div>
                                                             <div class="form-group">
                                                                 <label for="batdau">Ngày bắt đầu</label>
                                                                 <input type="date" class="form-control" id="batdau"
@@ -54,15 +54,13 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="ketthuc">Ngày kết thúc</label>
-                                                                <input type="date" class="form-control"
-                                                                    id="ketthuc"
+                                                                <input type="date" class="form-control" id="ketthuc"
                                                                     placeholder="Nhập ngày kết thúc" name="ketthuc">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="hocphi">Học phí</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="hocphi" placeholder="Nhập học phí"
-                                                                    name="hocphi">
+                                                                <input type="text" class="form-control" id="hocphi"
+                                                                    placeholder="Nhập học phí" name="hocphi">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="namhoc">Năm học</label>
@@ -92,7 +90,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table class="table" id="myTable"> 
                                         <thead>
                                             <tr>
                                                 <th>Môn học</th>
@@ -107,7 +105,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                    
+
                                                 <% khoahoc.forEach(function(item){%>
                                                 <td><%=item.MH_TEN%></td>
                                                 <td><%=item.KH_TEN%></td>
@@ -124,8 +122,99 @@
                                                     <a class="btn btn-icons btn-rounded btn-danger"
                                                         href="/quanly/khoahoc/xoa-<%=item.KH_ID%>"><i
                                                             class="fa fa-trash-o"></i></a>
-                                                    <a class="btn btn-icons btn-rounded btn-primary"
-                                                        href="/quanly/taikhoan/"><i class="fa fa-pencil"></i></a>
+                                                    <a class="btn btn-icons btn-rounded btn-primary" data-toggle="modal"
+                                                        data-target="#suakhoahoc<%=item.KH_ID %>"><i
+                                                            class="fa fa-pencil"></i></a>
+                                                </td>
+                                                <div class="modal fade" id="suakhoahoc<%=item.KH_ID %>" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <h4 class="card-title">Sửa khoá học</h4>
+                                                                        <form
+                                                                            action="/quanly/khoahoc/sua-<%=item.KH_ID %>"
+                                                                            class="forms-sample" method="POST">
+                                                                            <div class="form-group">
+                                                                                <label for="mon">Môn</label>
+                                                                                <select class="form-control" id="mon"
+                                                                                    name="mon">
+                                                                                    <% monhoc.forEach(function(itemmh){%>
+                                                                                    <% if(item.MH_TEN ==itemmh.MH_TEN) {%>
+                                                                                    <option value="<%=item.MH_ID%>" selected>
+                                                                                        <%=itemmh.MH_TEN %>
+                                                                                    </option>
+                                                                                    <%} else {%>
+                                                                                    <option value="<%=item.MH_ID%>">
+                                                                                        <%=itemmh.MH_TEN %>
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                    <%})%>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="ten">Tên khoá học</label>
+                                                                                <input type="text" class="form-control"
+                                                                                    id="ten"
+                                                                                    value="<%=item.MH_TEN%>"
+                                                                                    name="ten">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="batdau">Ngày bắt đầu</label>
+                                                                                <input type="date" class="form-control"
+                                                                                    id="batdau"
+                                                                                    value="<%=datestr%>"
+                                                                                    name="batdau">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="ketthuc">Ngày kết
+                                                                                    thúc</label>
+                                                                                <input type="date" class="form-control"
+                                                                                    id="ketthuc"
+                                                                                    value="<%=dateend %>"
+                                                                                    name="ketthuc">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="hocphi">Học phí</label>
+                                                                                <input type="text" class="form-control"
+                                                                                    id="hocphi"
+                                                                                    value="<%=item.KH_HOCPHI %>"
+                                                                                    name="hocphi">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="namhoc">Năm học</label>
+                                                                                <input type="number"
+                                                                                    class="form-control" id="namhoc"
+                                                                                    value="<%=item.KH_NAMHOC %>"
+                                                                                    name="namhoc">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="giaovien">Giáo viên</label>
+                                                                                <input type="text" class="form-control"
+                                                                                    id="giaovien"
+                                                                                    value="<%=item.KH_GIAOVIEN %>"
+                                                                                    name="giaovien">
+                                                                            </div>
+
+                                                                            <button type="submit"
+                                                                                class="btn btn-success mr-2">Cập nhật</button>
+                                                                            <button type="reset"
+                                                                                class="btn btn-light">Xoá</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default"
+                                                                    data-dismiss="modal">Đóng</button>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
                                                 </td>
                                             </tr>
                                             <%})%>

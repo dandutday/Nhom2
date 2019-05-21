@@ -5,7 +5,7 @@ class connectdatabase {
  this.con=mysql.createConnection({
       host: "localhost",
       user: "root",
-      database: "webtrungtamdaotao"
+      database: "Webnangcao"
     });
     this.con.connect(function(err) {
       if (err) throw err;

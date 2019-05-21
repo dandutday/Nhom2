@@ -103,53 +103,39 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th scope="col">#</th>
-									<th scope="col">Thứ 2</th>
-									<th scope="col">Thứ 3</th>
-									<th scope="col">Thứ 4</th>
-									<th scope="col">Thứ 5</th>
-									<th scope="col">Thứ 6</th>
-									<th scope="col">Thứ 7</th>
-									<th scope="col">Chủ Nhật</th>
+									<th scope="col">Môn</th>
+									<th scope="col">Thứ </th>
+									<th scope="col">Buổi</th>
+									<th scope="col">Giờ</th>
 								</tr>
 							</thead>
 							<tbody>
+								<% thoikhoabieu.forEach(function(item){%>
+								<% let  date = JSON.stringify(item.TKB_NGAY ) %>
+								<% date = date.slice(1,11) %>
+								<% let d = new Date(date);%>
+								<% console.log(date);%>
+								<% let weekday = new Array(7);    %>
+								<% weekday[0] = "Chủ nhật";       %>
+								<% weekday[1] = "Thứ 2";          %>
+								<% weekday[2] = "Thứ 3";          %>
+								<% weekday[3] = "Thứ 4";          %>
+								<% weekday[4] = "Thứ 5";          %>
+								<% weekday[5] = "Thứ 6";          %>
+								<% weekday[6] = "Thứ 7";          %>
+								<%var n = weekday[d.getDay()];    %>
 								<tr>
-									<th scope="row">Sáng</th>
-									<td>Mark</td>
-									<td>Otto</td>
-									<td>@mdo</td>
-									<td>Mark</td>
-									<td>Otto</td>
-									<td>@mdo</td>
-									<td>@mdo</td>
+									<td><%= item.KH_TEN  %></td>
+									<td><%=n%></td>
+									<td><%=item.TKB_BUOI %></td>
+									<td><%=item.TKB_GIOBATDAU %>-<%=item.TKB_GIOKETTHUC  %></td>
 								</tr>
-								<tr>
-									<th scope="row">Chiều</th>
-									<td>Jacob</td>
-									<td>Thornton</td>
-									<td>@fat</td>
-									<td>@mdo</td>
-									<td>Mark</td>
-									<td>Otto</td>
-									<td>@mdo</td>
-								</tr>
-								<tr>
-									<th scope="row">Tối</th>
-									<td>Larry</td>
-									<td>the Bird</td>
-									<td>@twitter</td>
-									<td>@mdo</td>
-									<td>Mark</td>
-									<td>Otto</td>
-									<td>@mdo</td>
-								</tr>
+								<%})%>
 							</tbody>
 						</table>
 					</div>
 				</div>
 				<div class="tab-pane fade " id="tab-3" role="tabpanel" aria-labelledby="tab-3">
-					<%var hocphi=0;%>
 					<% khoahocdadangki.forEach(function(item){%>
 					<table class="table table-striped">
 						<thead>
@@ -181,14 +167,13 @@
 								<td><%= item.MH_THOILUONG  %></td>
 							</tr>
 							<tr>
-									<th>Huỷ khoá học</th>
+								<th>Huỷ khoá học</th>
 								<td><a class="btn btn-icons btn-rounded btn-danger"
 										href="/khoahoc/xoa-<%=item.DK_ID %>"><i class="fa fa-trash-o"></i></a>
 								</td>
 							</tr>
 						</tbody>
 					</table>
-					<% hocphi+=item.KH_HOCPHI%>
 					<%})%>
 				</div>
 				<div class="tab-pane fade " id="tab-4" role="tabpanel" aria-labelledby="tab-4">
@@ -196,10 +181,10 @@
 						<tbody>
 							<tr>
 								<th>Tình trạng</th>
-								<%if(hocphi==0){%>
+								<%if(hocphi.HP_CONNO==0){%>
 								<td>Đã hoàn thành</td>
 								<%} else {%>
-								<td>Còn nợ:<%= hocphi %></td>
+								<td>Còn nợ:<%= hocphi.HP_CONNO %></td>
 								<%}%>
 								</tr>
 							</tbody>

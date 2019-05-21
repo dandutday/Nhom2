@@ -9,7 +9,7 @@ var monhoc = [];
 var user = [];
 
 //-------------------------query------------------------------
-cn.querys.query("SELECT * FROM monhoc", function (err, rows, fields) {
+cn.querys.query("SELECT * ,COUNT(a.MH_ID) AS KH_SOLUONG FROM khoahoc a,monhoc b WHERE a.MH_ID =b.MH_ID GROUP BY a.MH_ID", function (err, rows, fields) {
   if (err) throw err;
   monhoc = rows;
 });
@@ -17,7 +17,6 @@ cn.querys.query("SELECT * FROM monhoc", function (err, rows, fields) {
 //   if (err) throw err;
 //   khoahoc = rows;
 // });
-
 
 //-----------------------Trangchu--------------------------
 router.get('/trangchu', function (req, res, next) {
@@ -74,48 +73,55 @@ router.get('/khoahoc', function (req, res, next) {
     if (err) throw err;
     khoahocmoi = rows;
   });
-  
+
   cn.querys.query("SELECT * FROM khoahoc a,monhoc b,lop c WHERE a.MH_ID=b.MH_ID AND a.KH_ID =c.KH_ID ORDER BY a.KH_ID", function (err, rows, fields) {
     if (err) throw err;
-    res.render('courses', { title: 'Khoá học', monhoc: monhoc, khoahoc: rows,khoahocmoi:khoahocmoi });
+    res.render('courses', { title: 'Khoá học', monhoc: monhoc, khoahoc: rows, khoahocmoi: khoahocmoi });
   });
 });
 
 router.get('/khoahoc-:id', function (req, res, next) {
-
+  var khoahocmoi = [];
+  cn.querys.query("SELECT * FROM khoahoc a,monhoc b,lop c WHERE a.MH_ID=b.MH_ID AND a.KH_ID =c.KH_ID ORDER BY a.KH_ID DESC LIMIT 8", function (err, rows, fields) {
+    if (err) throw err;
+    khoahocmoi = rows;
+  });
   cn.querys.query("SELECT * FROM khoahoc a,monhoc b,lop c WHERE a.MH_ID=b.MH_ID AND a.KH_ID =c.KH_ID AND a.KH_ID=" + req.params.id, function (err, rows, fields) {
     if (err) throw err;
-    req.session.dangkikhoahoc=rows[0];
+    req.session.dangkikhoahoc = rows[0];
     // req.session.dangkikhoahoc=dangkikhoahoc;
     res.render('single-course', { title: 'Khoá học ' + req.params.id, chitietkhoahoc: rows[0], khoahoc: khoahocmoi });
     console.log(req.session.dangkikhoahoc);
   });
-  
+
 });
 
 router.post('/dangkikhoahoc', function (req, res, next) {
   let date = new Date().toISOString().slice(0, 10);
   let today = new Date();
   let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  cn.querys.query("INSERT INTO `dangky`(`DK_ID`, `KH_ID`, `TK_ID`, `DK_NGAYDANGKY`, `DK_GIODANGKY`, `DK_DAPHANLOP`) VALUES ('0','" + req.session.dangkikhoahoc.KH_ID + "','" + req.session.user.TK_ID + "','" + date + "','" + time + "','1')", function (err, rows, fields) {
+    if (err) throw err;
+    cn.querys.query("INSERT INTO `hocphi`(`TK_ID`, `DK_ID`, `HP_ID`, `HP_CONNO`, `HP_NGAYDONG`, `HP_SOTIEN`, `HP_TINHTRANG`) VALUES ('" + req.session.user.TK_ID + "','" + rows.insertId + "','0','" + req.session.dangkikhoahoc.KH_HOCPHI + "','','" + req.session.dangkikhoahoc.KH_HOCPHI + "','')", function (err, rows, fields) {
+      if (err) throw err;
+      console.log("thanh cong")
 
-  cn.querys.query("INSERT INTO `dangky`(`DK_ID`, `KH_ID`, `TK_ID`, `DK_NGAYDANGKY`, `DK_GIODANGKY`, `DK_DAPHANLOP`) VALUES ('0','"+req.session.dangkikhoahoc.KH_ID+"','"+req.session.user.TK_ID+"','"+date+"','"+time+"','1')", function (err, rows, fields) {
-    if (err) throw err;
-    console.log("thanh cong")
-    
+    });
   });
-  cn.querys.query("INSERT INTO `hocphi`(`TK_ID`, `KH_ID`, `HP_ID`, `HP_CONNO`, `HP_NGAYDONG`, `HP_SOTIEN`, `HP_TINHTRANG`) VALUES ("+req.session.user.TK_ID+","+req.session.dangkikhoahoc.KH_ID+",'0','"+req.session.dangkikhoahoc.KH_HOCPHI+"','','"+req.session.dangkikhoahoc.KH_HOCPHI+"','0')", function (err, rows, fields) {
-    if (err) throw err;
-    console.log("thanh cong")
-    
-  });
+
 
   res.redirect('/khoahoc');
 });
 router.get('/khoahoc/xoa-:id', function (req, res, next) {
-  
-  cn.querys.query("DELETE FROM `dangky` WHERE `DK_ID`="+req.params.id, function (err, rows, fields) {
+
+
+  cn.querys.query("DELETE FROM `hocphi` WHERE `DK_ID`=" + req.params.id, function (err, rows, fields) {
     if (err) throw err;
-    console.log("thanh cong")  
+    console.log("thanh cong")
+  });
+  cn.querys.query("DELETE FROM `dangky` WHERE `DK_ID`=" + req.params.id, function (err, rows, fields) {
+    if (err) throw err;
+    console.log("thanh cong")
   });
   res.redirect('/thongtin');
 
@@ -127,11 +133,15 @@ router.get('/timkiem', function (req, res, next) {
   req.query.khoahoc
   req.query.monhoc
 
-  res.render('search', { title: 'Tin tức',monhoc: monhoc });
+  res.render('search', { title: 'Tin tức', monhoc: monhoc });
 });
 //-----------------------tintuc-------------------------------------
 router.get('/tintuc', function (req, res, next) {
-  res.render('news', { title: 'Tin tức',monhoc: monhoc });
+  cn.querys.query("SELECT * FROM tintuc a,taikhoan b,nguoidung c WHERE a.`TK_ID`=b.`TK_ID` AND b.`TK_ID`=c.`TK_ID`", function (err, rows, fields) {
+    if (err) throw err;
+    res.render('news', { title: 'Tin tức', tintuc: rows,monhoc :monhoc  });
+  });
+
 });
 //-----------------------lienhe-------------------------------------
 router.get('/lienhe', function (req, res, next) {
@@ -139,14 +149,21 @@ router.get('/lienhe', function (req, res, next) {
 });
 //-----------------------thongtin-------------------------------------
 router.get('/thongtin', function (req, res, next) {
-  var khoahocdadangki=[];
-  cn.querys.query("SELECT * FROM dangky a,khoahoc b,taikhoan c,monhoc d WHERE a.KH_ID=b.KH_ID AND a.TK_ID=c.TK_ID AND b.MH_ID =d.MH_ID AND a.TK_ID="+req.session.user.TK_ID, function (err, rows, fields) {
-    if (err) throw err;
-    khoahocdadangki=rows;
-    res.render('information', { title: 'Thông tin ',khoahocdadangki:khoahocdadangki});
-  });
+  var khoahocdadangki = [];
+  var hocphi = [];
 
-  
+  cn.querys.query("SELECT SUM(`HP_CONNO`) AS HP_CONNO FROM `hocphi` WHERE `TK_ID` =" + req.session.user.TK_ID, function (err, rows, fields) {
+    if (err) throw err;
+    hocphi = rows[0];
+  });
+  cn.querys.query("SELECT * FROM thoikhoabieu a,lop b,khoahoc c,dangky d,taikhoan e WHERE a.`LP_ID`=b.`LP_ID` AND b.KH_ID =c.KH_ID AND c.KH_ID=d.KH_ID AND d.TK_ID =e.TK_ID AND e.TK_ID=" + req.session.user.TK_ID, function (err, result, fields) {
+    if (err) throw err;
+    cn.querys.query("SELECT * FROM dangky a,khoahoc b,taikhoan c,monhoc d WHERE a.KH_ID=b.KH_ID AND a.TK_ID=c.TK_ID AND b.MH_ID =d.MH_ID AND a.TK_ID=" + req.session.user.TK_ID, function (err, rows, fields) {
+      if (err) throw err;
+      khoahocdadangki = rows;
+      res.render('information', { title: 'Thông tin ', khoahocdadangki: khoahocdadangki, hocphi: hocphi, thoikhoabieu: result });
+    });
+  });
 });
 
 

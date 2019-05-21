@@ -19,7 +19,7 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Quản lý môn học</h4>
+                                <h4 class="card-title">Quản lý loại tin tức</h4>
                                 <button type="button" class="btn btn-success btn-rounded btn-fw" data-toggle="modal"
                                     data-target="#myModal">Thêm</button>
 
@@ -30,23 +30,18 @@
                                             <div class="modal-body">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h4 class="card-title">Thêm môn học</h4>
-                                                        <form action="/quanly/monhoc/them" class="forms-sample"
+                                                        <h4 class="card-title">Thêm loại tin tức</h4>
+                                                        <form action="/quanly/loaitintuc/them" class="forms-sample"
                                                             method="POST">
                                                             <div class="form-group">
-                                                                <label for="monhoc">Tên môn học</label>
-                                                                <input type="text" class="form-control" id="monhoc"
-                                                                    placeholder="Nhập tên môn học" name="monhoc">
+                                                                <label for="ten">Tên</label>
+                                                                <input type="text" class="form-control" id="ten"
+                                                                    placeholder="Nhập tên" name="ten">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="noidung">Nội dung </label>
-                                                                <input type="text" class="form-control" id="noidung"
-                                                                    placeholder="Nội dung" name="noidung">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="thoiluong">Thời lượng</label>
-                                                                <input type="text" class="form-control" id="thoiluong"
-                                                                    placeholder="Số tiết" name="thoiluong">
+                                                                <label for="mota">Mô tả</label>
+                                                                <textarea class="form-control" rows="3" id="mota"
+                                                                    placeholder="Nhập mô tả" name="mota"></textarea>
                                                             </div>
                                                             <button type="submit"
                                                                 class="btn btn-success mr-2">Thêm</button>
@@ -68,56 +63,45 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Môn học</th>
-                                                <th>Nội dung</th>
-                                                <th>Số tiết</th>
+                                                <th>Tên</th>
+                                                <th>Mô tả</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <% monhoc.forEach(function(item){%>
                                             <tr>
-
-                                                <td><%=item.MH_TEN%></td>
-                                                <td><%=item.MH_NOIDUNG  %></td>
-                                                <td><%=item.MH_THOILUONG  %></td>
+                                                <% loaitintuc.forEach(function(item){%>
+                                                <td><%=item.LT_TEN %></td>
+                                                <td><%=item.LT_MOTA %></td>
                                                 <td>
                                                     <a class="btn btn-icons btn-rounded btn-danger"
-                                                        href="/quanly/monhoc/xoa-<%=item.MH_ID %>"><i
+                                                        href="/quanly/loaitintuc/xoa-<%=item.LT_ID %>"><i
                                                             class="fa fa-trash-o"></i></a>
                                                     <a class="btn btn-icons btn-rounded btn-primary" data-toggle="modal"
-                                                        data-target="#suamonhoc<%=item.MH_ID %>"><i
+                                                        data-target="#suatloaitintuc<%=item.LT_ID %>"><i
                                                             class="fa fa-pencil"></i></a>
                                                 </td>
-                                                <div class="modal fade" id="suamonhoc<%=item.MH_ID %>" role="dialog">
+                                                <div class="modal fade" id="suatloaitintuc<%=item.LT_ID %>" role="dialog">
                                                     <div class="modal-dialog">
                                                         <!-- Modal content-->
                                                         <div class="modal-content">
                                                             <div class="modal-body">
                                                                 <div class="card">
                                                                     <div class="card-body">
-                                                                        <h4 class="card-title">Sửa môn học</h4>
+                                                                        <h4 class="card-title">Thêm loại tin tức</h4>
                                                                         <form
-                                                                            action="/quanly/monhoc/sua-<%=item.MH_ID %>"
+                                                                            action="/quanly/loaitintuc/sua-<%=item.LT_ID %>"
                                                                             class="forms-sample" method="POST">
                                                                             <div class="form-group">
-                                                                                <label for="monhoc">Tên môn học</label>
+                                                                                <label for="ten">Tên</label>
                                                                                 <input type="text" class="form-control"
-                                                                                    id="monhoc"
-                                                                                    value="<%=item.MH_TEN%>"
-                                                                                    name="monhoc">
+                                                                                    id="ten" placeholder="Nhập tên"
+                                                                                    name="ten">
                                                                             </div>
                                                                             <div class="form-group">
-                                                                                <label for="noidung">Nội dung </label>
-                                                                                <input type="text" class="form-control"
-                                                                                    id="noidung" value="<%=item.MH_NOIDUNG  %>"
-                                                                                    name="noidung">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="thoiluong">Thời
-                                                                                    lượng</label>
-                                                                                <input type="text" class="form-control"
-                                                                                    id="thoiluong" value="<%=item.MH_THOILUONG  %>"
-                                                                                    name="thoiluong">
+                                                                                <label for="mota">Mô tả</label>
+                                                                                <textarea class="form-control" rows="3"
+                                                                                    id="mota" placeholder="Nhập mô tả"
+                                                                                    name="mota"></textarea>
                                                                             </div>
                                                                             <button type="submit"
                                                                                 class="btn btn-success mr-2">Cập
@@ -125,7 +109,6 @@
                                                                             <button type="reset"
                                                                                 class="btn btn-light">Xoá</button>
                                                                         </form>
-
                                                                     </div>
                                                                 </div>
 
@@ -138,7 +121,6 @@
 
                                                     </div>
                                                 </div>
-
                                             </tr>
                                             <%})%>
                                         </tbody>

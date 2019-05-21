@@ -38,58 +38,30 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-9">
+                    <% tintuc.forEach(function(item){%>
                     <!-- blog post -->
                     <div class="blog-post">
-                        <img src="img/blog/1.jpg" alt="">
-                        <h3>Cách tạo ra một trang web trong vòng 5 phút?</h3>
+                        <img src="img/blog/<%=Math.floor(Math.random() * 3) + 1%>.jpg" alt="">
+                        <h3><%=item.TT_TIEUDE %></h3>
                         <div class="blog-metas">
                             <div class="blog-meta author">
-                                <div class="post-author set-bg" data-setbg="img/authors/1.jpg"></div>
-                                <a href="#">Tạ Hoàng Thắng</a>
+                                <div class="post-author set-bg"
+                                    data-setbg="img/authors/<%=Math.floor(Math.random() * 8) + 1%>.jpg"></div>
+                                <a href="#"><%=item.ND_HO %> <%=item.ND_TEN %></a>
                             </div>
                             <div class="blog-meta">
                                 <a href="#">Giáo viên</a>
                             </div>
                             <div class="blog-meta">
-                                <a href="#">10 - 02 - 2019</a>
-                            </div>
-                            <div class="blog-meta">
-                                <a href="#">2 Nhận xét</a>
-                            </div>
-                        </div>
-                        <p>Trước hết, chúng ta hãy làm rõ ngay từ đầu: mặc dù hướng dẫn này hoàn toàn miễn phí (chà!), nhưng nó không nói về việc tạo trang web miễn phí. Quả thật, về kỹ thuật mà nói, có thể tạo một trang web mà không tốn đồng nào, nhưng khi đó bạn sẽ cần sử dụng hosting miễn phí (điều không thoải mái cho lắm) hoặc một subscription plan không tính phí với nhà tạo trang web như Weebly (hiển thị quảng cáo và thương hiệu của họ trên trang web của bạn, e hèm). Tuy nhiên, lý do lớn nhất là bạn không thể có tên domain miễn phí trong trường hợp đó, và “đu” theo domain của ai đó, chẳng hạn như “mysite.weebly.com” thì khách truy cập của bạn lại không coi trọng cho lắm. </p>
-                        <a href="#" class="site-btn readmore">Đọc thêm</a>
-                    </div>
-                    <!-- blog post -->
-                    <div class="blog-post">
-                        <img src="img/blog/2.jpg" alt="">
-                        <h3>5 Cách kiếm tiền tại nhà</h3>
-                        <div class="blog-metas">
-                            <div class="blog-meta author">
-                                <div class="post-author set-bg" data-setbg="img/authors/2.jpg"></div>
-                                <a href="#">Nguyễn Thanh Hải</a>
-                            </div>
-                            <div class="blog-meta">
-                                <a href="#">Thạc sĩ</a>
-                            </div>
-                            <div class="blog-meta">
-                                <a href="#">10 - 02 - 2019</a>
-                            </div>
-                            <div class="blog-meta">
-                                <a href="#">2 Nhận xét</a>
+                                <% let  date = JSON.stringify(item.TT_NGAY ) %>
+                                <% date = date.slice(1,11) %>
+                                <a href="#"><%=date %> </a>
                             </div>
                         </div>
-                        <p>Kiếm tiền online (Make Money Online) hay còn goi là MMO trở thành một xu hướng tạo ra nguồn thu nhập cực phổ biến hiện nay.
-
-                                Có thể bạn chẳng thấy "thằng hàng xóm" hay "đứa bàn bên" không đi làm nhưng tụi nó vẫn có tiền tiêu xài. Nhưng bạn không thể biết những người đó làm gì trên mạng?
-                                
-                                Công nghệ phát triển thì càng có nhiều hình thức kiếm tiền online xuất hiện.
-                                
-                                Tính chất tự do, thoải mái, nhiều cơ hội & đầy tiềm năng đã khiến nhiều người đã xem MMO trở thành một công việc chính của họ.
-                                
-                                Rất nhiều cá nhân tạo được dòng thu nhập đều đặn, bền vững, với mức thu nhập "khủng" nhờ MMO. "Khủng" ở đây là như nào ? Là $1000, $2000 hoặc thậm chí hơn mỗi tháng. </p>
-                        <a href="#" class="site-btn readmore">Đọc thêm</a>
+                        <p><%=item.TT_NOIDUNG %></p>
+                        <!-- <a href="#" class="site-btn readmore">Đọc thêm</a> -->
                     </div>
+                    <%})%>
                     <!-- blog post -->
                     <!-- <div class="blog-post">
                         <img src="img/blog/3.jpg" alt="">
@@ -132,12 +104,12 @@
                     <div class="sb-widget-item">
                         <h4 class="sb-w-title">Môn học</h4>
                         <ul>
-                                <% monhoc.forEach(function(item){%>
-                            <li><a href="#"><%=item.MH_TEN%></a></li>
-                           
+                            <% monhoc.forEach(function(item){%>
+                            <li><a href="/khoahoc"><%=item.MH_TEN%></a></li>
+
                             <%})%>
                         </ul>
-                        
+
                     </div>
                     <div class="sb-widget-item">
                         <h4 class="sb-w-title">Nổi bật</h4>
@@ -158,7 +130,7 @@
                             <a href="#">Thiết kế</a>
                             <a href="#">Giao thông</a>
                             <a href="#">Ẩm thực</a>
-                           
+
                         </div>
                     </div>
                     <div class="sb-widget-item">
@@ -176,13 +148,13 @@
 
 
 
-	<!-- footer section -->
-	<% include _footer%>
-	<!-- footer section end -->
+    <!-- footer section -->
+    <% include _footer%>
+    <!-- footer section end -->
 
 
-    	<!--====== Javascripts & Jquery ======-->
-	<% include _javascripts.ejs%>
+    <!--====== Javascripts & Jquery ======-->
+    <% include _javascripts.ejs%>
 </body>
 
 </html>

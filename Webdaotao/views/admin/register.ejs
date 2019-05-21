@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Star Admin Free Bootstrap-4 Admin Dashboard Template</title>
+    <% include _style%>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <% include _navbar%>
+        <div class="container-fluid page-body-wrapper">
+            <% include _sidebar%>
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Quản lý đăng ký học viên</h4>
+                                <button type="button" class="btn btn-success btn-rounded btn-fw" data-toggle="modal"
+                                    data-target="#myModal">Thêm</button>
+
+                                <div class="modal fade" id="myModal" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Đăng kí khoá học</h4>
+                                                        <form action="/quanly/dangki/them" class="forms-sample"
+                                                            method="POST">
+                                                            <div class="form-group">
+                                                                <label for="khoahoc">Chọn khoá học</label>
+                                                                <select class="form-control" id="khoahoc"
+                                                                    name="khoahoc">
+                                                                    <% khoahoc.forEach(function(item){%>
+                                                                    <option value="<%=item.KH_ID %>"><%=item.KH_TEN  %>
+                                                                    </option>
+                                                                    <%})%>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="taikhoan">Chọn tài khoản</label>
+                                                                <select class="form-control" id="taikhoan"
+                                                                    name="taikhoan">
+                                                                    <% taikhoan.forEach(function(item){%>
+                                                                    <option value="<%=item.TK_ID  %>">
+                                                                        <%=item.TK_USERNAME   %>
+                                                                    </option>
+                                                                    <%})%>
+                                                                </select>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-success mr-2">Đăng
+                                                                kí</button>
+                                                            <button type="reset" class="btn btn-light">Xoá</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">Đóng</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Khoá học</th>
+                                                <th>Học phí</th>
+                                                <th>Tài khoản</th>
+                                                <th>Ngày đăng kí</th>
+                                                <th>Giờ đăng kí</th>
+                                                <th>Chi tiết</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <% dangky.forEach(function(item){%>
+                                                <td><%=item.KH_TEN %></td>
+                                                <td><%=item.KH_HOCPHI  %></td>
+                                                <td><%=item.TK_USERNAME   %></td>
+                                                <% let  date = JSON.stringify(item.DK_NGAYDANGKY) %>
+                                                <% date = date.slice(1,11) %>
+                                                <td><%=date %></td>
+                                                <td><%=item.DK_GIODANGKY    %></td>
+                                                <td>
+                                                    <a class="btn btn-icons btn-rounded btn-danger"
+                                                        href="/quanly/dangki/xoa-<%=item.DK_ID %>"><i
+                                                            class="fa fa-trash-o"></i></a>
+                                                    <a class="btn btn-icons btn-rounded btn-primary" data-toggle="modal"
+                                                        data-target="#suadangki<%=item.DK_ID %>"><i
+                                                            class="fa fa-pencil"></i></a>
+                                                </td>
+                                                <div class="modal fade" id="suadangki<%=item.DK_ID %>" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <h4 class="card-title">Sửa khoá học</h4>
+                                                                        <form action="/quanly/dangki/sua-<%=item.DK_ID %>"
+                                                                            class="forms-sample" method="POST">
+                                                                            <div class="form-group">
+                                                                                <label for="khoahoc">Chọn khoá
+                                                                                    học</label>
+                                                                                <select class="form-control"
+                                                                                    id="khoahoc" name="khoahoc">
+                                                                                    <% khoahoc.forEach(function(itemkh){%>
+                                                                                        <% if(item.KH_TEN ==itemkh.KH_TEN) {%>
+                                                                                        <option value="<%=itemkh.KH_ID%>"
+                                                                                            selected>
+                                                                                            <%=itemkh.KH_TEN %>
+                                                                                        </option>
+                                                                                        <%} else {%>
+                                                                                        <option value="<%=itemkh.KH_ID%>">
+                                                                                            <%=itemkh.KH_TEN %>
+                                                                                        </option>
+                                                                                        <%}%>
+                                                                                        <%})%>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="taikhoan">Chọn tài
+                                                                                    khoản</label>
+                                                                                <select class="form-control"
+                                                                                    id="taikhoan" name="taikhoan">
+                                                                                    <% taikhoan.forEach(function(itemtk){%>
+                                                                                        <% if(item.TK_USERNAME ==itemtk.TK_USERNAME) {%>
+                                                                                            <option value="<%=item.TK_ID %>" selected>
+                                                                                                <%=itemtk.TK_USERNAME %>
+                                                                                            </option>
+                                                                                            <%} else {%>
+                                                                                            <option value="<%=item.TK_ID %>">
+                                                                                                <%=itemtk.TK_USERNAME %>
+                                                                                            </option>
+                                                                                            <%}%>
+                                                                                    <%})%>
+                                                                                </select>
+                                                                            </div>
+                                                                            <button type="submit"
+                                                                                class="btn btn-success mr-2">Đăng
+                                                                                kí</button>
+                                                                            <button type="reset"
+                                                                                class="btn btn-light">Xoá</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default"
+                                                                    data-dismiss="modal">Đóng</button>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </tr>
+                                            <%})%>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <% include _footer%>
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <% include _javascript%>
+    <!-- Custom js for this page-->
+    <!-- End custom js for this page-->
+</body>
+
+</html>

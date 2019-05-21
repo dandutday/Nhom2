@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Star Admin Free Bootstrap-4 Admin Dashboard Template</title>
+    <% include _style%>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <% include _navbar%>
+        <div class="container-fluid page-body-wrapper">
+            <% include _sidebar%>
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Quản thời khoá biểu</h4>
+                                <button type="button" class="btn btn-success btn-rounded btn-fw" data-toggle="modal"
+                                    data-target="#myModal">Thêm</button>
+
+                                <div class="modal fade" id="myModal" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Thêm thời khoá biểu</h4>
+                                                        <form action="/quanly/thoikhoabieu/them" class="forms-sample"
+                                                            method="POST">
+                                                            <div class="form-group">
+                                                                <label for="khoahoc">Khoá học</label>
+                                                                <select class="form-control" id="khoahoc"
+                                                                    name="khoahoc">
+                                                                    <% khoahoc.forEach(function(itemkh){%>
+                                                                    <option value="<%=itemkh.LP_ID%>">
+                                                                        <%=itemkh.KH_TEN%>(<%=itemkh.LP_SISO%>hs)
+                                                                    </option>
+                                                                    <%})%>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="ngay">Ngày</label>
+                                                                <input type="date" class="form-control" id="ngay"
+                                                                    placeholder="Nhập ngày" name="ngay">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="buoi">Buổi</label>
+                                                                <input type="text" class="form-control" id="buoi"
+                                                                    placeholder="Nhập buổi" name="buoi">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="giobd">Giờ bắt đầu</label>
+                                                                <input type="time" class="form-control" id="giobd"
+                                                                    placeholder="Nhập giời bắt đầu" name="giobd">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="giokt">Giờ kết thúc</label>
+                                                                <input type="time" class="form-control" id="giokt"
+                                                                    placeholder="Nhập giờ kết thúc" name="giokt">
+                                                            </div>
+                                                            <button type="submit"
+                                                                class="btn btn-success mr-2">Thêm</button>
+                                                            <button type="reset" class="btn btn-light">Xoá</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">Đóng</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Khoá học</th>
+                                                <th>Giáo viên</th>
+                                                <th>Sĩ số</th>
+                                                <th>Buổi</th>
+                                                <th>Ngày</th>
+                                                <th>Giờ bắt đầu</th>
+                                                <th>Giờ kết thúc</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <% thoikhoabieu.forEach(function(item){%>
+                                                <td><%=item.KH_TEN %>(<%=item.LP_SISO%>hs)</td>
+                                                <td><%=item.KH_GIAOVIEN %></td>
+                                                <td><%=item.LP_SISO %></td>
+                                                <td><%=item.TKB_BUOI %></td>
+                                                <% let  date = JSON.stringify(item.TKB_NGAY) %>
+                                                <% date = date.slice(1,11) %>
+                                                <td><%=date %></td>
+                                                <td><%=item.TKB_GIOBATDAU %></td>
+                                                <td><%=item.TKB_GIOKETTHUC %></td>
+                                                <td>
+                                                    <a class="btn btn-icons btn-rounded btn-danger"
+                                                        href="/quanly/thoikhoabieu/xoa-<%=item.TKB_ID %>"><i
+                                                            class="fa fa-trash-o"></i></a>
+                                                    <a class="btn btn-icons btn-rounded btn-primary" data-toggle="modal"
+                                                        data-target="#suatkb<%=item.TKB_ID %>"><i
+                                                            class="fa fa-pencil"></i></a>
+                                                </td>
+                                                <div class="modal fade" id="suatkb<%=item.TKB_ID %>" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <h4 class="card-title">Thêm thời khoá biểu</h4>
+                                                                        <form action="/quanly/thoikhoabieu/sua-<%=item.TKB_ID %>"
+                                                                            class="forms-sample" method="POST">
+                                                                            <div class="form-group">
+                                                                                <label for="khoahoc">Khoá học</label>
+                                                                                <select class="form-control"
+                                                                                    id="khoahoc" name="khoahoc">
+                                                                                    <% khoahoc.forEach(function(itemkh){%>
+                                                                                    <%if(itemkh.KH_TEN==item.KH_TEN && item.LP_SISO==itemkh.LP_SISO){%>
+                                                                                    <option value="<%=itemkh.LP_ID%>" selected>
+                                                                                        <%=itemkh.KH_TEN%>(<%=itemkh.LP_SISO%>hs)
+                                                                                    </option>
+                                                                                    <%} else {%>
+                                                                                        <option value="<%=itemkh.LP_ID%>">
+                                                                                            <%=itemkh.KH_TEN%>(<%=itemkh.LP_SISO%>hs)
+                                                                                        </option>
+                                                                                    <%}%>
+                                                                                    <%})%>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="ngay">Ngày</label>
+                                                                                <input type="date" class="form-control"
+                                                                                    id="ngay" placeholder="Nhập ngày" value="<%=date%>"
+                                                                                    name="ngay">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="buoi">Buổi</label>
+                                                                                <input type="text" class="form-control"
+                                                                                    id="buoi" placeholder="Nhập buổi" value="<%=item.TKB_BUOI %>"
+                                                                                    name="buoi">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="giobd">Giờ bắt đầu</label>
+                                                                                <input type="time" class="form-control"
+                                                                                    id="giobd"
+                                                                                    placeholder="Nhập giời bắt đầu" value="<%=item.TKB_GIOBATDAU %>"
+                                                                                    name="giobd">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="giokt">Giờ kết thúc</label>
+                                                                                <input type="time" class="form-control"
+                                                                                    id="giokt"
+                                                                                    placeholder="Nhập giờ kết thúc" value="<%=item.TKB_GIOKETTHUC %>"
+                                                                                    name="giokt">
+                                                                            </div>
+                                                                            <button type="submit"
+                                                                                class="btn btn-success mr-2">Cập nhật</button>
+                                                                            <button type="reset"
+                                                                                class="btn btn-light">Xoá</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default"
+                                                                    data-dismiss="modal">Đóng</button>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </tr>
+                                            <%})%>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <% include _footer%>
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <% include _javascript%>
+    <!-- Custom js for this page-->
+    <!-- End custom js for this page-->
+</body>
+
+</html>
